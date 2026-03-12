@@ -47,7 +47,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
     // Forge-change: take _EE nationality
     [ValidatePrototypeId<NationalityPrototype>]
-    public const string DefaultNationality = "SolFederation";
+    public const string DefaultNationality = "TransSolarFederation";
 
     // Corvax-Frontier-Barks-start
     [ValidatePrototypeId<BarkPrototype>]
