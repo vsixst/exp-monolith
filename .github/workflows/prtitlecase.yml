@@ -4,7 +4,6 @@ on:
     types: [opened, edited, synchronize]
 
 env:
-  GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
   PR_NUMBER: ${{ github.event.pull_request.number }}
 
 jobs:
@@ -14,7 +13,9 @@ jobs:
       - name: Checkout Master
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.BOT_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.event.pull_request.head.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
 
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -28,6 +29,9 @@ jobs:
         shell: bash
 
       - name: Change Title
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd "Tools/prtitlecase"
           node index.js
