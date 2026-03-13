@@ -68,6 +68,12 @@
         Caustic: 0.8
   - type: ExplosionResistance
     damageCoefficient: 0.75
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      toggleable-clothing: !type:Container
+        ents: []
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEmpireWBHood
     requiredSlot:
@@ -110,6 +116,12 @@
         Caustic: 0.8
   - type: ExplosionResistance
     damageCoefficient: 0.75
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+      toggleable-clothing: !type:Container
+        ents: []
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadEmpireInqWBHood
     requiredSlot:
