@@ -23,8 +23,8 @@
   - ContractorFun
   - ContractorTrinkets
   # - EmpireSpeciesSpecific
-  - TsfmcFirearm
-  - TsfmcMag
+  - EmpireFirearm
+  - EmpireMag
   canCustomizeName: true
 
 # region Soldier
@@ -52,8 +52,8 @@
   - ContractorFun
   - ContractorTrinkets
   # - EmpireSpeciesSpecific
-  - TsfmcFirearm
-  - TsfmcMag
+  - EmpireFirearm
+  - EmpireMag
   canCustomizeName: true
 
 # region Officer
@@ -81,8 +81,8 @@
   - ContractorFun
   - ContractorTrinkets
   # - EmpireSpeciesSpecific
-  - TsfmcFirearm
-  - TsfmcMag
+  - EmpireFirearm
+  - EmpireMag
   canCustomizeName: true
 
 # region Diplomacy
@@ -111,8 +111,8 @@
   - ContractorFun
   - ContractorTrinkets
   # - EmpireSpeciesSpecific
-  - TsfmcFirearm
-  - TsfmcMag
+  - EmpireFirearm
+  - EmpireMag
   canCustomizeName: true
 
 # region Inquisitor
@@ -140,8 +140,8 @@
   - ContractorFun
   - ContractorTrinkets
   # - EmpireSpeciesSpecific
-  - TsfmcFirearm
-  - TsfmcMag
+  - EmpireFirearm
+  - EmpireMag
   canCustomizeName: true
 
 # region Cardinal
@@ -169,8 +169,8 @@
   - ContractorFun
   - ContractorTrinkets
   # - EmpireSpeciesSpecific
-  - TsfmcFirearm
-  - TsfmcMag
+  - EmpireFirearm
+  - EmpireMag
   canCustomizeName: true
 
 # region Bailiff
@@ -198,8 +198,8 @@
   - ContractorFun
   - ContractorTrinkets
   # - EmpireSpeciesSpecific
-  - TsfmcFirearm
-  - TsfmcMag
+  - EmpireFirearm
+  - EmpireMag
   canCustomizeName: true
 
 # region Lord
@@ -227,6 +227,6 @@
   - ContractorFun
   - ContractorTrinkets
   # - EmpireSpeciesSpecific
-  - TsfmcFirearm
-  - TsfmcMag
+  - EmpireFirearm
+  - EmpireMag
   canCustomizeName: true

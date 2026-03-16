@@ -8,7 +8,7 @@
   - type: EncryptionKey
     channels:
     - Syndicate
-    - SyndicateSmuggler
+    # - SyndicateSmuggler
     defaultChannel: Syndicate
   - type: Item
     sprite: Forge/Objects/Devices/encryption_keys.rsi
