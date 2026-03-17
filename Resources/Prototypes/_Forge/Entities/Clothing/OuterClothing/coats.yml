@@ -95,6 +95,16 @@
         Caustic: 0.85
   - type: ExplosionResistance
     damageCoefficient: 0.9
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        showEnts: false
+        occludes: true
+        ents: []
+      toggleable-clothing: !type:Container
+        showEnts: false
+        occludes: true
+        ents: []
 
 - type: entity
   parent: [ ClothingOuterStorageFoldableBase ]
@@ -133,6 +143,16 @@
   id: ClothingOuterCoatEmpireInqWindbreakerOpened
   name: empire inquisitor windbreaker
   components:
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        showEnts: false
+        occludes: true
+        ents: []
+      toggleable-clothing: !type:Container
+        showEnts: false
+        occludes: true
+        ents: []
   - type: Armor
     modifiers:
       coefficients:
