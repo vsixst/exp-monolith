@@ -11,7 +11,7 @@
     - sprite: Markers/jobs.rsi
       state: green
     - sprite: Forge/Structures/Decoration/banner.rsi
-    - state: banner_empire
+      state: banner_empire
 
 - type: entity
   id: ForgeSpawnPointArbiter
