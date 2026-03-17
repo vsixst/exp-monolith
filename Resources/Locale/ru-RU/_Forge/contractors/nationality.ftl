@@ -1,3 +1,4 @@
+# TODO: Другое описание. У меня уже мозгов не хватает придумать смешное описание.
 nationality_name_solfed = Транс-Солнечная Федерация
 nationality_description_solfed = Гражданин ТСФ.
 

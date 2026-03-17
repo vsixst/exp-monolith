@@ -32,7 +32,7 @@
       - state: passport_solfed_open # todo: allow people to toggle open and closed
     - type: ExtendDescription
       descriptionList:
-      - description: "Свои ребята"
+      - description: "Очередной гражданин федерации"
         fontSize: 12
         color: "#77ff77"
         requireDetailRange: true
@@ -40,7 +40,7 @@
           - !type:NationalityRequirement
             nationalities:
               - TransSolarFederation
-      - description: "Чужие, чужие"
+      - description: "Ещё один солфед.."
         fontSize: 12
         color: "#ad4141"
         requireDetailRange: true
@@ -48,7 +48,7 @@
           - !type:NationalityRequirement
             nationalities:
               - Imperial
-      - description: "Чужие, чужие"
+      - description: "Капиталист."
         fontSize: 12
         color: "#ad4141"
         requireDetailRange: true
@@ -69,7 +69,7 @@
       - state: passport_imperial_open # todo: allow people to toggle open and closed
     - type: ExtendDescription
       descriptionList:
-      - description: "Чужие, чужие"
+      - description: "Имперский подданный, как и многие"
         fontSize: 12
         color: "#ad4141"
         requireDetailRange: true
@@ -77,7 +77,7 @@
           - !type:NationalityRequirement
             nationalities:
               - TransSolarFederation
-      - description: "Свои ребята"
+      - description: "Подданный Империи"
         fontSize: 12
         color: "#77ff77"
         requireDetailRange: true
@@ -85,7 +85,7 @@
           - !type:NationalityRequirement
             nationalities:
               - Imperial
-      - description: "Чужие, чужие"
+      - description: "Из угнетателей"
         fontSize: 12
         color: "#ad4141"
         requireDetailRange: true
@@ -106,7 +106,7 @@
       - state: passport_ussp_open # todo: allow people to toggle open and closed
     - type: ExtendDescription
       descriptionList:
-      - description: "Чужие, чужие"
+      - description: "Красный из отколовшихся систем"
         fontSize: 12
         color: "#ad4141"
         requireDetailRange: true
@@ -114,7 +114,7 @@
           - !type:NationalityRequirement
             nationalities:
               - TransSolarFederation
-      - description: "Чужие, чужие"
+      - description: "Из числа красных мятежников"
         fontSize: 12
         color: "#ad4141"
         requireDetailRange: true
@@ -122,7 +122,7 @@
           - !type:NationalityRequirement
             nationalities:
               - Imperial
-      - description: "Свои ребята"
+      - description: "Товарищ!"
         fontSize: 12
         color: "#77ff77"
         requireDetailRange: true
