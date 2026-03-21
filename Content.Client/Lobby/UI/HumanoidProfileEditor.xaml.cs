@@ -2,6 +2,7 @@ using System.IO;
 using System.Linq;
 using System.Numerics;
 using Content.Client.Humanoid;
+using Content.Client.Lobby.UI.Company; // Forge-Change: company whitelist
 using Content.Client.Lobby.UI.Loadouts;
 using Content.Client.Lobby.UI.Roles;
 using Content.Client.Message;
@@ -37,7 +38,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Direction = Robust.Shared.Maths.Direction;
 using Content.Shared._EE.Contractors.Prototypes; // Forge-change: take _EE nationality
-using Content.Client._Forge.Company.UI; // Forge-change
 
 namespace Content.Client.Lobby.UI
 {
@@ -61,9 +61,42 @@ namespace Content.Client.Lobby.UI
 
         // One at a time.
         private LoadoutWindow? _loadoutWindow;
+        private CompanyWindow? _companyWindow; // Forge-Change: company whitelist
 
         private bool _exporting;
         private bool _imaging;
+        private string? _preferredNonFactionCompany; // Forge-Change: company whitelist
+
+        // Forge-Change-start: company whitelist
+        private static readonly Dictionary<string, string> ForcedFactionCompaniesByJob = new()
+        {
+            // TSF
+            ["TsfCommandingOfficer"] = "TSF",
+            ["TsfExecutiveOfficer"] = "TSF",
+            ["TsfSeniorOfficer"] = "TSF",
+            ["TsfSeniorAide"] = "TSF",
+            ["TsfAmbassador"] = "TSF",
+            ["TsfRanger"] = "TSF",
+            ["TsfRecruit"] = "TSF",
+            ["TsfEngineer"] = "TSF",
+            // Empire
+            ["Praefect"] = "Imperial",
+            ["Arbiter"] = "Imperial",
+            ["Cardinal"] = "Imperial",
+            ["Inquisitor"] = "Imperial",
+            ["Consul"] = "Imperial",
+            ["Praetorian"] = "Imperial",
+            ["Auxilia"] = "Imperial",
+            ["Neophyte"] = "Imperial",
+            // Renegates
+            ["Baron"] = "None",
+            ["Draftsman"] = "None",
+            ["Overseer"] = "None",
+            ["Quack"] = "None",
+            ["Foreman"] = "None",
+            ["Flunky"] = "None",
+        };
+        // Forge-Change-end: company whitelist
 
         /// <summary>
         /// If we're attempting to save.
@@ -100,7 +133,6 @@ namespace Content.Client.Lobby.UI
 
         private ColorSelectorSliders _rgbSkinColorSelector;
 
-        private CompanySelectControl? _companySelect; // Forge-change
 
         private bool _isDirty;
 
@@ -135,7 +167,6 @@ namespace Content.Client.Lobby.UI
             _resManager = resManager;
             _requirements = requirements;
             _controller = UserInterfaceManager.GetUIController<LobbyUIController>();
-            _companySelect = new CompanySelectControl(); // Forge-change
 
             _whitelist = _entManager.System<EntityWhitelistSystem>(); // Frontier
 
@@ -539,43 +570,9 @@ namespace Content.Client.Lobby.UI
 
             // #endregion Company
 
-            #region Company
-
-            TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-company-tab"));
-
-            var username = _playerManager.LocalPlayer?.Session?.Name;
-            var companies = _prototypeManager.EnumeratePrototypes<CompanyPrototype>()
-                .Where(c => !c.Disabled || (username != null && c.Logins.Contains(username)))
-                .OrderBy(c => c.Name)
-                .ToList();
-
-            var noneIndex = companies.FindIndex(c => c.ID == "None");
-            if (noneIndex != -1)
-            {
-                var none = companies[noneIndex];
-                companies.RemoveAt(noneIndex);
-                companies.Insert(0, none);
-            }
-
-            _companySelect?.Populate(companies, Profile?.Company);
-
-            if (_companySelect != null)
-            {
-                _companySelect.OnCompanySelected += companyId =>
-                {
-                    Profile = Profile?.WithCompany(companyId);
-                    SetDirty();
-                };
-            }
-
-            CompanyContainer.AddChild(_companySelect!);
-
-            #endregion Company
-            // Forge-change-end
-
             #region Markings
 
-            TabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-markings-tab"));
+            TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-markings-tab")); // Forge-Change: company whitelist
 
             Markings.OnMarkingAdded += OnMarkingChange;
             Markings.OnMarkingRemoved += OnMarkingChange;
@@ -612,7 +609,7 @@ namespace Content.Client.Lobby.UI
             SpeciesInfoButton.OnPressed += OnSpeciesInfoButtonPressed;
 
             UpdateSpeciesGuidebookIcon();
-            UpdateCompanyControls();
+            // UpdateCompanyControls(); // Forge-Change: company whitelist
             IsDirty = false;
         }
 
@@ -1281,6 +1278,16 @@ namespace Content.Client.Lobby.UI
         public void SetProfile(HumanoidCharacterProfile? profile, int? slot)
         {
             Profile = profile?.Clone();
+            // Forge-Change-start: company whitelist
+            if (Profile != null)
+            {
+                var forcedCompany = GetForcedCompanyFromProfile(Profile);
+                if (forcedCompany == null || Profile.Company != forcedCompany)
+                    _preferredNonFactionCompany = Profile.Company;
+            }
+
+            TryApplyForcedFactionCompany(markDirty: false);
+            // Forge-Change-end: company whitelist
             CharacterSlot = slot;
             IsDirty = false;
             JobOverride = null;
@@ -1301,7 +1308,7 @@ namespace Content.Client.Lobby.UI
             UpdateHairPickers();
             UpdateCMarkingsHair();
             UpdateCMarkingsFacialHair();
-            UpdateCompanyControls();
+            // UpdateCompanyControls(); // Forge-Change: company whitelist
 
             RefreshAntags();
             RefreshJobs();
@@ -1471,6 +1478,17 @@ namespace Content.Client.Lobby.UI
                     {
                         var selectedJobPrio = (JobPriority) selectedPrio;
                         Profile = Profile?.WithJobPriority(job.ID, selectedJobPrio);
+                        // Forge-Change-start: company whitelist
+                        var selectedFactionCompany = GetForcedFactionCompany(job.ID);
+
+                        if (selectedJobPrio != JobPriority.Never &&
+                            ForcedFactionCompaniesByJob.TryGetValue(job.ID, out var forcedCompanyId) &&
+                            Profile != null &&
+                            Profile.Company != forcedCompanyId)
+                        {
+                            Profile = Profile.WithCompany(forcedCompanyId);
+                        }
+                        // Forge-Change-end: company whitelist
 
                         foreach (var (jobId, other) in _jobPriorities)
                         {
@@ -1481,13 +1499,40 @@ namespace Content.Client.Lobby.UI
                                 continue;
                             }
 
-                            if (selectedJobPrio != JobPriority.High || (JobPriority) other.Selected != JobPriority.High)
+                            // Forge-Change-start: company whitelist
+
+                            // Faction rough-check:
+                            // If a faction role is selected, every role outside that faction becomes Never.
+                            // If a non-faction role is selected, all faction roles become Never.
+                            if (selectedJobPrio != JobPriority.Never && Profile != null)
+                            {
+                                var otherPrio = (JobPriority)other.Selected;
+                                if (otherPrio != JobPriority.Never)
+                                {
+                                    var otherFactionCompany = GetForcedFactionCompany(jobId);
+                                    var incompatible = selectedFactionCompany != null
+                                        ? otherFactionCompany != selectedFactionCompany
+                                        : otherFactionCompany != null;
+
+                                    if (incompatible)
+                                    {
+                                        other.Select((int)JobPriority.Never);
+                                        Profile = Profile.WithJobPriority(jobId, JobPriority.Never);
+                                        continue;
+                                    }
+                                }
+                            }
+
+                            if (selectedJobPrio != JobPriority.High || (JobPriority)other.Selected != JobPriority.High)
+                            // Forge-Change-end: company whitelist
                                 continue;
 
                             // Lower any other high priorities to medium.
                             other.Select((int)JobPriority.Medium);
                             Profile = Profile?.WithJobPriority(jobId, JobPriority.Medium);
                         }
+
+                        TryApplyForcedFactionCompany(markDirty: false); // Forge-Change: company whitelist
 
                         // TODO: Only reload on high change (either to or from).
                         ReloadPreview();
@@ -1503,6 +1548,18 @@ namespace Content.Client.Lobby.UI
                         VerticalAlignment = VAlignment.Center,
                         Margin = new Thickness(3f, 3f, 0f, 0f),
                     };
+
+                    // Forge-Change-start: company whitelist
+                    var companyWindowBtn = new Button()
+                    {
+                        Text = Loc.GetString("humanoid-profile-editor-company-tab"),
+                        HorizontalAlignment = HAlignment.Right,
+                        VerticalAlignment = VAlignment.Center,
+                        Margin = new Thickness(3f, 3f, 0f, 0f),
+                    };
+                    companyWindowBtn.OnPressed += _ => OpenCompanyWindow();
+                    companyWindowBtn.Visible = !ForcedFactionCompaniesByJob.ContainsKey(job.ID);
+                    // Forge-Change-end: company whitelist
 
                     var collection = IoCManager.Instance!;
                     var protoManager = collection.Resolve<IPrototypeManager>();
@@ -1536,6 +1593,7 @@ namespace Content.Client.Lobby.UI
                     _jobPriorities.Add((job.ID, selector));
                     jobContainer.AddChild(selector);
                     jobContainer.AddChild(loadoutWindowBtn);
+                    jobContainer.AddChild(companyWindowBtn); // Forge-Change: company whitelist
                     category.AddChild(jobContainer);
                 }
             }
@@ -1601,6 +1659,47 @@ namespace Content.Client.Lobby.UI
 
             UpdateJobPriorities();
         }
+
+        // Forge-Change-start: company whitelist
+        private void OpenCompanyWindow()
+        {
+            _companyWindow?.Dispose();
+            _companyWindow = null;
+
+            if (Profile is null)
+                return;
+
+            var username = _playerManager.LocalPlayer?.Session?.Name;
+            var companies = _prototypeManager.EnumeratePrototypes<CompanyPrototype>()
+                .OrderBy(c => c.Name)
+                .ToList();
+            var selectableCompanies = companies
+                .Where(c => !c.Disabled || _requirements.IsCompanyWhitelisted(c.ID) || (username != null && c.Logins.Contains(username)))
+                .Select(c => c.ID)
+                .ToHashSet();
+
+            var noneIndex = companies.FindIndex(c => c.ID == "None");
+            if (noneIndex != -1)
+            {
+                var none = companies[noneIndex];
+                companies.RemoveAt(noneIndex);
+                companies.Insert(0, none);
+            }
+
+            _companyWindow = new CompanyWindow
+            {
+                Title = Loc.GetString("humanoid-profile-editor-company-tab"),
+            };
+            _companyWindow.Populate(companies, selectableCompanies, Profile.Company);
+            _companyWindow.OnCompanySelected += companyId =>
+            {
+                Profile = Profile?.WithCompany(companyId);
+                _preferredNonFactionCompany = companyId;
+                SetDirty();
+            };
+            _companyWindow.OpenCenteredLeft();
+        }
+        // Forge-Change-end: company whitelist
 
         private void OnFlavorTextChange(string content)
         {
@@ -1711,6 +1810,8 @@ namespace Content.Client.Lobby.UI
 
             _loadoutWindow?.Dispose();
             _loadoutWindow = null;
+            _companyWindow?.Dispose(); // Forge-Change: company whitelist
+            _companyWindow = null; // Forge-Change: company whitelist
         }
 
         protected override void EnteredTree()
@@ -1914,6 +2015,65 @@ namespace Content.Client.Lobby.UI
             }
         }
 
+        // Forge-Change-start: company whitelist
+        private void TryApplyForcedFactionCompany(bool markDirty)
+        {
+            if (Profile == null)
+                return;
+
+            var forcedCompany = GetForcedCompanyFromProfile(Profile);
+
+            if (forcedCompany != null)
+            {
+                if (Profile.Company != forcedCompany)
+                {
+                    _preferredNonFactionCompany = Profile.Company;
+                    Profile = Profile.WithCompany(forcedCompany);
+
+                    if (markDirty)
+                        SetDirty();
+                }
+
+                return;
+            }
+
+            if (string.IsNullOrEmpty(_preferredNonFactionCompany) || Profile.Company == _preferredNonFactionCompany)
+                return;
+
+            Profile = Profile.WithCompany(_preferredNonFactionCompany);
+
+            if (markDirty)
+                SetDirty();
+        }
+
+        private static string? GetForcedFactionCompany(string jobId)
+        {
+            return ForcedFactionCompaniesByJob.TryGetValue(jobId, out var companyId)
+                ? companyId
+                : null;
+        }
+
+        private static string? GetForcedCompanyFromProfile(HumanoidCharacterProfile profile)
+        {
+            var bestPriority = JobPriority.Never;
+            string? forcedCompany = null;
+
+            foreach (var (jobId, priority) in profile.JobPriorities)
+            {
+                if (priority == JobPriority.Never)
+                    continue;
+
+                var companyId = GetForcedFactionCompany(jobId);
+                if (companyId == null || priority < bestPriority)
+                    continue;
+
+                bestPriority = priority;
+                forcedCompany = companyId;
+            }
+
+            return forcedCompany;
+        }
+        // Forge-Change-end: company whitelist
         private void UpdateSexControls()
         {
             if (Profile == null)
@@ -2390,33 +2550,5 @@ namespace Content.Client.Lobby.UI
         //     }
         // }
 
-        // Forge-change-start
-        private void UpdateCompanyControls()
-        {
-            if (Profile is null)
-                return;
-
-            var username = _playerManager.LocalPlayer?.Session?.Name;
-            var companies = _prototypeManager.EnumeratePrototypes<CompanyPrototype>()
-                .Where(c => !c.Disabled || (username != null && c.Logins.Contains(username)))
-                .OrderBy(c => c.Name)
-                .ToList();
-
-            var noneIndex = companies.FindIndex(c => c.ID == "None");
-            if (noneIndex != -1)
-            {
-                var none = companies[noneIndex];
-                companies.RemoveAt(noneIndex);
-                companies.Insert(0, none);
-            }
-
-            _companySelect?.Populate(companies, Profile?.Company);
-
-            if (Profile?.Company != null && !companies.Any(c => c.ID == Profile.Company))
-            {
-                Profile = Profile.WithCompany("None");
-            }
-        }
-        // Forge-change-end
     }
 }

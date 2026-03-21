@@ -1,46 +1,47 @@
 <BoxContainer xmlns="https://spacestation14.io"
               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
               x:Class="Content.Client._Forge.Company.UI.CompanySelectControl"
-              Orientation="Vertical"
+              Orientation="Horizontal"
               SeparationOverride="10"
               Margin="10"
               VerticalExpand="True">
+    <PanelContainer StyleClasses="BackgroundDark"
+                    MinSize="340 0"
+                    MaxSize="340 10000"
+                    HorizontalExpand="False"
+                    VerticalExpand="True">
+        <ScrollContainer VerticalExpand="True" HorizontalExpand="True">
+            <BoxContainer Name="CompanyListContainer" Orientation="Vertical" Margin="6"/>
+        </ScrollContainer>
+    </PanelContainer>
 
-    <!-- Dropdown - select company button -->
-    <OptionButton Name="CompanyDropdown"
-                  HorizontalExpand="True"
-                  MinSize="200 0"
-                  StyleClasses="Button" />
-    <BoxContainer Orientation="Horizontal" SeparationOverride="10" VerticalExpand="True">
-        <!-- Icon block -->
-        <PanelContainer Name="CompanyImagePanel"
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+        <PanelContainer Name="CompanyActionsPanel"
                         StyleClasses="BackgroundDark"
-                        MinSize="192 192"
-                        MaxSize="256 256"
-                        SizeFlagsStretchRatio="1"
-                        VerticalAlignment="Top">
-            <EntityPrototypeView Name="CompanyImage"
-                                 MinSize="192 192"
-                                 MaxSize="256 256"
-                                 Scale="4 4"
-                                 HorizontalExpand="True"
-                                 VerticalExpand="True" />
+                        HorizontalExpand="True"
+                        Margin="0 0 0 8">
+            <BoxContainer Orientation="Horizontal" Margin="8" SeparationOverride="8">
+                <Button Name="JoinCompanyButton"
+                        Text="{Loc 'company-select-button'}"
+                        HorizontalExpand="True"/>
+                <Button Name="LeaveCompanyButton"
+                        Text="{Loc 'company-leave-button'}"
+                        HorizontalExpand="True"/>
+            </BoxContainer>
         </PanelContainer>
-        <!-- Description block -->
+
         <PanelContainer Name="CompanyDescriptionPanel"
                         StyleClasses="BackgroundDark"
-                        Margin="5 10 5 5"
                         HorizontalExpand="True"
-                        VerticalExpand="True"
-                        SizeFlagsStretchRatio="3">
+                        VerticalExpand="True">
             <ScrollContainer VerticalExpand="True" HorizontalExpand="True">
                 <RichTextLabel Name="CompanyDescription"
                                Access="Public"
                                VerticalAlignment="Top"
                                StyleClasses="LabelSubText LabelLarge"
-                               Margin="10 15 10 5"
-                               MinSize="200 0"
-                               MaxWidth="500" />
+                               Margin="10 12 10 8"
+                               HorizontalExpand="True"
+                               VerticalExpand="True" />
             </ScrollContainer>
         </PanelContainer>
     </BoxContainer>

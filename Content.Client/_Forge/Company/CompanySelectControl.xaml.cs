@@ -5,103 +5,131 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Localization;
 using Content.Shared._Mono.Company;
 using System.Linq;
-using Robust.Client.Player;
-using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 
 namespace Content.Client._Forge.Company.UI;
 
 [GenerateTypedNameReferences]
 public sealed partial class CompanySelectControl : BoxContainer
 {
+    private static readonly Color AvailableTint = new(0.78f, 1.00f, 0.78f, 1.00f);
+    private static readonly Color LockedTint = new(1.00f, 0.78f, 0.78f, 1.00f);
+
     public event Action<string>? OnCompanySelected;
 
     private List<CompanyPrototype> _companies = new();
-    private string? _currentCompany;
+    private HashSet<string> _selectableCompanyIds = new();
+    private readonly Dictionary<string, Button> _companyButtons = new();
+    private string? _selectedCompanyId;
+    private string _currentCompanyId = "None";
 
     public CompanySelectControl()
     {
         RobustXamlLoader.Load(this);
-
-        CompanyDropdown.OnItemSelected += args =>
+        JoinCompanyButton.OnPressed += _ =>
         {
-            if (args.Id < 0 || args.Id >= _companies.Count)
+            if (string.IsNullOrEmpty(_selectedCompanyId))
                 return;
 
-            CompanyDropdown.SelectId(args.Id);
-            UpdateCompanyCard(args.Id);
+            if (!_selectableCompanyIds.Contains(_selectedCompanyId))
+                return;
 
-            var companyId = _companies[args.Id].ID;
-            _currentCompany = companyId;
-            OnCompanySelected?.Invoke(companyId);
+            _currentCompanyId = _selectedCompanyId;
+            OnCompanySelected?.Invoke(_selectedCompanyId);
+            RefreshActions();
+        };
+
+        LeaveCompanyButton.OnPressed += _ =>
+        {
+            if (_currentCompanyId == "None")
+                return;
+
+            _currentCompanyId = "None";
+            OnCompanySelected?.Invoke("None");
+            RefreshActions();
         };
     }
 
-    public void Populate(List<CompanyPrototype> companies, string? selectedCompanyId = null)
+    public void Populate(List<CompanyPrototype> companies, HashSet<string> selectableCompanyIds, string? selectedCompanyId = null)
     {
-        var session = IoCManager.Resolve<IPlayerManager>().LocalPlayer;
-        var playerLogin = session?.Name;
+        _companies = companies;
+        _selectableCompanyIds = selectableCompanyIds;
+        _currentCompanyId = string.IsNullOrEmpty(selectedCompanyId) ? "None" : selectedCompanyId;
+        _selectedCompanyId = _currentCompanyId;
+        _companyButtons.Clear();
 
-        _companies = companies
-            .Where(c => c.Logins == null || c.Logins.Count == 0 || (playerLogin != null && c.Logins.Contains(playerLogin)))
-            .ToList();
+        CompanyListContainer.DisposeAllChildren();
 
-        CompanyDropdown.Clear();
-
-        for (var i = 0; i < _companies.Count; i++)
+        foreach (var company in _companies)
         {
-            CompanyDropdown.AddItem(_companies[i].Name, i);
+            var companyId = company.ID;
+            var button = new Button
+            {
+                Text = company.Name,
+                HorizontalExpand = true,
+            };
+
+            button.OnPressed += _ =>
+            {
+                _selectedCompanyId = companyId;
+                UpdateCompanyCard(companyId);
+            };
+
+            _companyButtons[companyId] = button;
+            CompanyListContainer.AddChild(button);
         }
 
-        int selectedIndex = 0;
-        if (!string.IsNullOrEmpty(selectedCompanyId))
+        if (_selectedCompanyId == null || !_companies.Any(c => c.ID == _selectedCompanyId))
         {
-            var found = _companies.FindIndex(c => c.ID == selectedCompanyId);
-            if (found != -1)
-                selectedIndex = found;
+            _selectedCompanyId = _companies.FirstOrDefault()?.ID;
         }
 
-        if (_companies.Count > 0)
+        if (_selectedCompanyId != null)
         {
-            CompanyDropdown.SelectId(selectedIndex);
-            UpdateCompanyCard(selectedIndex);
-
-            _currentCompany = _companies[selectedIndex].ID;
-            OnCompanySelected?.Invoke(_currentCompany);
+            UpdateCompanyCard(_selectedCompanyId);
         }
     }
 
-    private void UpdateCompanyCard(int index)
+    private void UpdateCompanyCard(string companyId)
     {
-        if (index < 0 || index >= _companies.Count)
+        var company = _companies.FirstOrDefault(c => c.ID == companyId);
+        if (company == null)
             return;
 
-        var company = _companies[index];
+        foreach (var (id, button) in _companyButtons)
+        {
+            button.Modulate = id == companyId ? Color.White : new Color(0.92f, 0.92f, 0.92f, 1f);
+        }
 
         if (company.ID == "None")
         {
             CompanyDescriptionPanel.Visible = false;
-            CompanyImagePanel.Visible = false;
+            CompanyActionsPanel.Modulate = AvailableTint;
+            RefreshActions();
             return;
         }
 
         CompanyDescriptionPanel.Visible = true;
-        CompanyImagePanel.Visible = true;
+        var isSelectable = _selectableCompanyIds.Contains(company.ID);
+        var tint = isSelectable ? AvailableTint : LockedTint;
+        CompanyDescriptionPanel.Modulate = tint;
+        CompanyActionsPanel.Modulate = tint;
 
         var text = !string.IsNullOrEmpty(company.Description)
             ? Loc.GetString(company.Description)
             : Loc.GetString("company-none-description");
 
         CompanyDescription.SetMessage(text);
+        RefreshActions();
+    }
 
-        if (company.EntityIcon != null)
-        {
-            CompanyImage.SetPrototype(company.EntityIcon.Value);
-            CompanyImage.Visible = true;
-        }
-        else
-        {
-            CompanyImage.Visible = false;
-        }
+    private void RefreshActions()
+    {
+        var selected = _selectedCompanyId;
+        JoinCompanyButton.Disabled = string.IsNullOrEmpty(selected)
+            || selected == "None"
+            || selected == _currentCompanyId
+            || !_selectableCompanyIds.Contains(selected);
+
+        LeaveCompanyButton.Disabled = _currentCompanyId == "None";
     }
 }
