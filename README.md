@@ -12,7 +12,7 @@
 [Discord](https://discord.gg/7wDwSPde58) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/) | [Boosty](https://boosty.to/corvaxforge) | [Вики](https://station14.ru/wiki/%D0%9F%D0%BE%D1%80%D1%82%D0%B0%D0%BB:Frontier)
 
 
-</div>
+</div> 
 
 ## Сборка
 
