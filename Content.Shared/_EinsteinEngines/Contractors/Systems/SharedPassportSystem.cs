@@ -95,6 +95,14 @@ public class SharedPassportSystem : EntitySystem
         "Cadet",
         "TsfEngineer",
         "TsfBorg",
+        "TsfCommandingOfficer",
+        "TsfExecutiveOfficer",
+        "TsfSeniorOfficer",
+        "TsfSeniorAide",
+        "TsfAmbassador",
+        "TsfRanger",
+        "TsfRecruit",
+        "TsfEngineer",
     };
     private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent ev)
     {

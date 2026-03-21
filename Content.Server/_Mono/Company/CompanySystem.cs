@@ -7,6 +7,8 @@ using Content.Shared.PDA;
 using Content.Shared.Roles.Jobs;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Server.Audio; // Forge-change: spawnSound
+using Robust.Shared.Audio; // Forge-change: spawnSound
 
 namespace Content.Server._Mono.Company;
 
@@ -21,6 +23,7 @@ public sealed class CompanySystem : EntitySystem
     [Dependency] private readonly SharedJobSystem _job = default!;
     [Dependency] private readonly SharedIdCardSystem _idCardSystem = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private readonly AudioSystem _audio = default!; // Forge-change: SpawnSound
 
     // Dictionary to store original company preferences for players
     private readonly Dictionary<string, string> _playerOriginalCompanies = new();
@@ -37,6 +40,16 @@ public sealed class CompanySystem : EntitySystem
         "Cadet",
         "TsfEngineer",
         "TsfBorg",
+        // Forge-change-start
+        "TsfCommandingOfficer",
+        "TsfExecutiveOfficer",
+        "TsfSeniorOfficer",
+        "TsfSeniorAide",
+        "TsfAmbassador",
+        "TsfRanger",
+        "TsfRecruit",
+        "TsfEngineer",
+        // Forge-change-end
     };
 
     private readonly HashSet<string> _rogues = new()
@@ -47,6 +60,28 @@ public sealed class CompanySystem : EntitySystem
         "PDVDenasvar",
         "PDVInfiltrator",
         "PdvBorg",
+    };
+
+    private readonly HashSet<string> _imperial = new()
+    {
+        "Praefect",
+        "Arbiter",
+        "Cardinal",
+        "Inquisitor",
+        "Consul",
+        "Praetorian",
+        "Auxilia",
+        "Neophyte",
+    };
+
+    private readonly HashSet<string> _renegates = new()
+    {
+        "Baron",
+        "Draftsman",
+        "Overseer",
+        "Quack",
+        "Foreman",
+        "Flunky",
     };
 
     // private readonly HashSet<string> _usspJobs = new()
@@ -127,12 +162,21 @@ public sealed class CompanySystem : EntitySystem
         else if (args.JobId != null && _colonialJobs.Contains(args.JobId))
         {
             // Assign MD company
-            companyComp.CompanyName = "Colonial";
+            companyComp.CompanyName = "Nanotrasen"; // Forge-change: Colonial to NT
         }
         else if (args.JobId != null && _mdJobs.Contains(args.JobId))
         {
             // Assign MD company
-            companyComp.CompanyName = "MD";
+            companyComp.CompanyName = "Hospital"; // Forge-change: MD to Hospital
+        }
+        // Forge-change: add imperial and renegates
+        else if (args.JobId != null && _imperial.Contains(args.JobId))
+        {
+            companyComp.CompanyName = "Imperial";
+        }
+        else if (args.JobId != null && _renegates.Contains(args.JobId))
+        {
+            companyComp.CompanyName = "None";
         }
         else
         {
@@ -166,6 +210,17 @@ public sealed class CompanySystem : EntitySystem
                 companyComp.CompanyName = profileCompany;
             }
         }
+
+        // Forge-change-start
+        if (_prototypeManager.TryIndex<CompanyPrototype>(companyComp.CompanyName, out var proto))
+        {
+            if (proto.SpawnSound != null)
+            {
+                var audioParams = AudioParams.Default.WithVolume(-5f);
+                _audio.PlayPvs(proto.SpawnSound, args.Mob, audioParams);
+            }
+        }
+        // Forge-change-end
 
         // Ensure the component is networked to clients
         Dirty(args.Mob, companyComp);

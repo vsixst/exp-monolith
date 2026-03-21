@@ -37,6 +37,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Direction = Robust.Shared.Maths.Direction;
 using Content.Shared._EE.Contractors.Prototypes; // Forge-change: take _EE nationality
+using Content.Client._Forge.Company.UI; // Forge-change
 
 namespace Content.Client.Lobby.UI
 {
@@ -99,6 +100,8 @@ namespace Content.Client.Lobby.UI
 
         private ColorSelectorSliders _rgbSkinColorSelector;
 
+        private CompanySelectControl? _companySelect; // Forge-change
+
         private bool _isDirty;
 
         [ValidatePrototypeId<GuideEntryPrototype>]
@@ -132,6 +135,7 @@ namespace Content.Client.Lobby.UI
             _resManager = resManager;
             _requirements = requirements;
             _controller = UserInterfaceManager.GetUIController<LobbyUIController>();
+            _companySelect = new CompanySelectControl(); // Forge-change
 
             _whitelist = _entManager.System<EntityWhitelistSystem>(); // Frontier
 
@@ -465,23 +469,86 @@ namespace Content.Client.Lobby.UI
 
             RefreshTraits();
 
+            // #region Company
+
+            // TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-company-tab"));
+
+            // // Clear any existing items
+            // CompanyButton.Clear();
+
+            // var username = _playerManager.LocalPlayer?.Session?.Name; //Lua modified - company login support
+
+            // // Add all companies from prototypes - use consistent sorting with UpdateCompanyControls
+            // var companies = _prototypeManager.EnumeratePrototypes<CompanyPrototype>()
+            //     //.Where(c => !c.Disabled) // Filter out disabled companies
+            //     .Where(c => !c.Disabled || (username != null && c.Logins.Contains(username))) //Lua modified - company login support
+            //     .ToList();
+            // companies.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.Ordinal));
+
+            // // Make sure "None" is first in the list
+            // var noneIndex = companies.FindIndex(c => c.ID == "None");
+            // if (noneIndex != -1)
+            // {
+            //     var none = companies[noneIndex];
+            //     companies.RemoveAt(noneIndex);
+            //     companies.Insert(0, none);
+            // }
+
+            // // Add to TSF company dropdown
+            // for (var i = 0; i < companies.Count; i++)
+            // {
+            //     CompanyButton.AddItem(companies[i].Name, i);
+            //     //Logger.Debug($"Added company to dropdown: {i} - {companies[i].ID} - {companies[i].Name}");
+            // }
+
+            // CompanyButton.OnItemSelected += args =>
+            // {
+            //     CompanyButton.SelectId(args.Id);
+            //     if (args.Id >= 0 && args.Id < companies.Count)
+            //     {
+            //         var companyId = companies[args.Id].ID;
+
+            //         // Description of Company (pointed-to in prototype, defined in Locale)
+            //         CompanyDescriptionLabel.SetMessage(!string.IsNullOrEmpty(companies[args.Id].Description)
+            //             ? Loc.GetString(companies[args.Id].Description)
+            //             : "N/A"); // Only if there's a description. If not, then set to N/A.
+
+            //         // Display company image if available
+            //         if (!string.IsNullOrEmpty(companies[args.Id].Image))
+            //         {
+            //             CompanyImage.Texture = IoCManager.Resolve<IResourceCache>().GetResource<TextureResource>(companies[args.Id].Image!).Texture;
+            //             CompanyImage.Visible = true;
+            //         }
+            //         else
+            //         {
+            //             CompanyImage.Visible = false;
+            //         }
+
+            //         // Get the current profile for comparison
+            //         var oldCompany = Profile?.Company;
+            //         // Update the profile with the new company
+            //         Profile = Profile?.WithCompany(companyId);
+
+            //         // Debug logging to verify selection
+            //         //Logger.Debug($"Company changed from {oldCompany} to {companyId}");
+
+            //         // Explicitly call SetDirty to update save button state
+            //         SetDirty();
+            //     }
+            // };
+
+            // #endregion Company
+
             #region Company
 
             TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-company-tab"));
 
-            // Clear any existing items
-            CompanyButton.Clear();
-
-            var username = _playerManager.LocalPlayer?.Session?.Name; //Lua modified - company login support
-
-            // Add all companies from prototypes - use consistent sorting with UpdateCompanyControls
+            var username = _playerManager.LocalPlayer?.Session?.Name;
             var companies = _prototypeManager.EnumeratePrototypes<CompanyPrototype>()
-                //.Where(c => !c.Disabled) // Filter out disabled companies
-                .Where(c => !c.Disabled || (username != null && c.Logins.Contains(username))) //Lua modified - company login support
+                .Where(c => !c.Disabled || (username != null && c.Logins.Contains(username)))
+                .OrderBy(c => c.Name)
                 .ToList();
-            companies.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.Ordinal));
 
-            // Make sure "None" is first in the list
             var noneIndex = companies.FindIndex(c => c.ID == "None");
             if (noneIndex != -1)
             {
@@ -490,50 +557,21 @@ namespace Content.Client.Lobby.UI
                 companies.Insert(0, none);
             }
 
-            // Add to TSF company dropdown
-            for (var i = 0; i < companies.Count; i++)
+            _companySelect?.Populate(companies, Profile?.Company);
+
+            if (_companySelect != null)
             {
-                CompanyButton.AddItem(companies[i].Name, i);
-                //Logger.Debug($"Added company to dropdown: {i} - {companies[i].ID} - {companies[i].Name}");
+                _companySelect.OnCompanySelected += companyId =>
+                {
+                    Profile = Profile?.WithCompany(companyId);
+                    SetDirty();
+                };
             }
 
-            CompanyButton.OnItemSelected += args =>
-            {
-                CompanyButton.SelectId(args.Id);
-                if (args.Id >= 0 && args.Id < companies.Count)
-                {
-                    var companyId = companies[args.Id].ID;
-
-                    // Description of Company (pointed-to in prototype, defined in Locale)
-                    CompanyDescriptionLabel.SetMessage(!string.IsNullOrEmpty(companies[args.Id].Description)
-                        ? Loc.GetString(companies[args.Id].Description)
-                        : "N/A"); // Only if there's a description. If not, then set to N/A.
-
-                    // Display company image if available
-                    if (!string.IsNullOrEmpty(companies[args.Id].Image))
-                    {
-                        CompanyImage.Texture = IoCManager.Resolve<IResourceCache>().GetResource<TextureResource>(companies[args.Id].Image!).Texture;
-                        CompanyImage.Visible = true;
-                    }
-                    else
-                    {
-                        CompanyImage.Visible = false;
-                    }
-
-                    // Get the current profile for comparison
-                    var oldCompany = Profile?.Company;
-                    // Update the profile with the new company
-                    Profile = Profile?.WithCompany(companyId);
-
-                    // Debug logging to verify selection
-                    //Logger.Debug($"Company changed from {oldCompany} to {companyId}");
-
-                    // Explicitly call SetDirty to update save button state
-                    SetDirty();
-                }
-            };
+            CompanyContainer.AddChild(_companySelect!);
 
             #endregion Company
+            // Forge-change-end
 
             #region Markings
 
@@ -2282,20 +2320,88 @@ namespace Content.Client.Lobby.UI
             ExportButton.Disabled = false;
         }
 
+        // private void UpdateCompanyControls()
+        // {
+        //     if (Profile is null)
+        //         return;
+
+        //     var username = _playerManager.LocalPlayer?.Session?.Name; //Lua modified - company login support
+
+        //     var companies = _prototypeManager.EnumeratePrototypes<CompanyPrototype>()
+        //         //.Where(c => !c.Disabled) // Filter out disabled companies
+        //         .Where(c => !c.Disabled || (username != null && c.Logins.Contains(username))) //Lua modified - company login support
+        //         .ToList();
+        //     companies.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.Ordinal));
+
+        //     // Make sure "None" is first in the list
+        //     var noneIndex = companies.FindIndex(c => c.ID == "None");
+        //     if (noneIndex != -1)
+        //     {
+        //         var none = companies[noneIndex];
+        //         companies.RemoveAt(noneIndex);
+        //         companies.Insert(0, none);
+        //     }
+
+        //     //Logger.Debug($"Updating company controls." +
+        //     //$"Current profile company: {Profile.Company}\n");
+
+        //     // Find the company in the list and select it
+        //     bool found = false;
+        //     for (var i = 0; i < companies.Count; i++)
+        //     {
+        //         if (companies[i].ID != Profile.Company)
+        //             continue; // Short circuit.
+
+        //         //Logger.Debug($"Found company at index {i}: {companies[i].ID} - {companies[i].Name}");
+        //         CompanyButton.SelectId(i);
+
+        //         // Description of Company (pointed-to in prototype, defined in Locale)
+        //         CompanyDescriptionLabel.SetMessage(!string.IsNullOrEmpty(companies[i].Description)
+        //             ? Loc.GetString(companies[i].Description)
+        //             : "N/A"); // Only if there's a description. If not, then set to N/A.
+
+        //         // Display company image if available
+        //         if (!string.IsNullOrEmpty(companies[i].Image))
+        //         {
+        //             CompanyImage.Texture = IoCManager.Resolve<IResourceCache>().GetResource<TextureResource>(companies[i].Image!).Texture;
+        //             CompanyImage.Visible = true;
+        //         }
+        //         else
+        //         {
+        //             CompanyImage.Visible = false;
+        //         }
+
+        //         found = true;
+        //         break;
+        //     }
+
+        //     // If company wasn't found, default to "None" (index 0)
+        //     if (!found)
+        //     {
+        //         //Logger.Debug($"Company {Profile.Company} not found in list, defaulting to None");
+        //         CompanyButton.SelectId(0);
+        //         CompanyImage.Visible = false;
+
+        //         // Also reset the profile's company to None if the current one is disabled
+        //         if (_prototypeManager.TryIndex<CompanyPrototype>(Profile.Company, out var companyProto) && companyProto.Disabled)
+        //         {
+        //             Profile = Profile.WithCompany("None");
+        //         }
+        //     }
+        // }
+
+        // Forge-change-start
         private void UpdateCompanyControls()
         {
             if (Profile is null)
                 return;
 
-            var username = _playerManager.LocalPlayer?.Session?.Name; //Lua modified - company login support
-
+            var username = _playerManager.LocalPlayer?.Session?.Name;
             var companies = _prototypeManager.EnumeratePrototypes<CompanyPrototype>()
-                //.Where(c => !c.Disabled) // Filter out disabled companies
-                .Where(c => !c.Disabled || (username != null && c.Logins.Contains(username))) //Lua modified - company login support
+                .Where(c => !c.Disabled || (username != null && c.Logins.Contains(username)))
+                .OrderBy(c => c.Name)
                 .ToList();
-            companies.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.Ordinal));
 
-            // Make sure "None" is first in the list
             var noneIndex = companies.FindIndex(c => c.ID == "None");
             if (noneIndex != -1)
             {
@@ -2304,52 +2410,13 @@ namespace Content.Client.Lobby.UI
                 companies.Insert(0, none);
             }
 
-            //Logger.Debug($"Updating company controls." +
-                         //$"Current profile company: {Profile.Company}\n");
+            _companySelect?.Populate(companies, Profile?.Company);
 
-            // Find the company in the list and select it
-            bool found = false;
-            for (var i = 0; i < companies.Count; i++)
+            if (Profile?.Company != null && !companies.Any(c => c.ID == Profile.Company))
             {
-                if (companies[i].ID != Profile.Company)
-                    continue; // Short circuit.
-
-                //Logger.Debug($"Found company at index {i}: {companies[i].ID} - {companies[i].Name}");
-                CompanyButton.SelectId(i);
-
-                // Description of Company (pointed-to in prototype, defined in Locale)
-                CompanyDescriptionLabel.SetMessage(!string.IsNullOrEmpty(companies[i].Description)
-                    ? Loc.GetString(companies[i].Description)
-                    : "N/A"); // Only if there's a description. If not, then set to N/A.
-
-                // Display company image if available
-                if (!string.IsNullOrEmpty(companies[i].Image))
-                {
-                    CompanyImage.Texture = IoCManager.Resolve<IResourceCache>().GetResource<TextureResource>(companies[i].Image!).Texture;
-                    CompanyImage.Visible = true;
-                }
-                else
-                {
-                    CompanyImage.Visible = false;
-                }
-
-                found = true;
-                break;
-            }
-
-            // If company wasn't found, default to "None" (index 0)
-            if (!found)
-            {
-                //Logger.Debug($"Company {Profile.Company} not found in list, defaulting to None");
-                CompanyButton.SelectId(0);
-                CompanyImage.Visible = false;
-
-                // Also reset the profile's company to None if the current one is disabled
-                if (_prototypeManager.TryIndex<CompanyPrototype>(Profile.Company, out var companyProto) && companyProto.Disabled)
-                {
-                    Profile = Profile.WithCompany("None");
-                }
+                Profile = Profile.WithCompany("None");
             }
         }
+        // Forge-change-end
     }
 }
