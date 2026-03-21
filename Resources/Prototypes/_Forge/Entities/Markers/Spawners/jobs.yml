@@ -129,3 +129,66 @@
   components:
   - type: SpawnPoint
     job_id: Baron
+
+- type: entity
+  id: ForgeSpawnPointTsfCommandingOfficer
+  parent: SpawnPointSheriff
+  name: spawn point Commanding Officer
+  suffix: ТСФ
+  components:
+  - type: SpawnPoint
+    job_id: TsfCommandingOfficer
+
+- type: entity
+  id: ForgeSpawnPointTsfExecutiveOfficer
+  parent: SpawnPointBailiff
+  name: spawn point Executive Officer
+  suffix: ТСФ
+  components:
+  - type: SpawnPoint
+    job_id: TsfExecutiveOfficer
+
+- type: entity
+  id: ForgeSpawnPointTsfSeniorOfficer
+  parent: NFSpawnPointSeniorOfficer
+  name: spawn point Senior Officer
+  suffix: ТСФ
+  components:
+  - type: SpawnPoint
+    job_id: TsfSeniorOfficer
+
+- type: entity
+  id: ForgeSpawnPointTsfSeniorAide
+  parent: SpawnPointPublicAffairsLiaison
+  name: spawn point Senior Aide
+  suffix: ТСФ
+  components:
+  - type: SpawnPoint
+    job_id: TsfSeniorAide
+
+- type: entity
+  id: ForgeSpawnPointTsfAmbassador
+  parent: SpawnPointPublicAffairsLiaison
+  name: spawn point Federation Ambassador
+  suffix: ТСФ
+  components:
+  - type: SpawnPoint
+    job_id: TsfAmbassador
+
+- type: entity
+  id: ForgeSpawnPointTsfRanger
+  parent: SpawnPointDeputy
+  name: spawn point Ranger
+  suffix: ТСФ
+  components:
+  - type: SpawnPoint
+    job_id: TsfRanger
+
+- type: entity
+  id: ForgeSpawnPointTsfRecruit
+  parent: SpawnPointCadet
+  name: spawn point Recruit
+  suffix: ТСФ
+  components:
+  - type: SpawnPoint
+    job_id: TsfRecruit

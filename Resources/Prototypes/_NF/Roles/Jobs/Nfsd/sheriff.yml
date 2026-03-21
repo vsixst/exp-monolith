@@ -17,11 +17,13 @@
   alwaysUseSpawner: true
   icon: JobIconSheriff
   requireAdminNotify: true
+  setPreference: false #Forge Change
   supervisors: job-supervisors-centcom
   weight: 180
   displayWeight: 70
+  hideConsoleVisibility: true #Forge Change
   canBeAntag: false
-  guides: [ BasicLore, TransSolarFederation ] # Mono
+ # guides: [ BasicLore, TransSolarFederation ] # Forge-Change-delete
   accessGroups:
   - AllAccess
   access: # Mono

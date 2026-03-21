@@ -1,0 +1,60 @@
+- type: job
+  id: TsfCommandingOfficer
+  name: job-name-tsf-commanding-officer
+  description: job-description-tsf-commanding-officer
+  playTimeTracker: JobTsfCommandingOfficer
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 144000
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 90000
+    - !type:RoleTimeRequirement
+      role: JobWarden
+      time: 18000
+  whitelisted: true
+  startingGear: TsfCommandingOfficerGear
+  alwaysUseSpawner: true
+  icon: JobIconTsfCommandingOfficer
+  requireAdminNotify: true
+  supervisors: job-supervisors-tsf-high-command
+  weight: 180
+  displayWeight: 70
+  canBeAntag: false
+ # guides: [ BasicLore, TransSolarFederation ] # Forge-Change-delete
+  accessGroups:
+  - AllAccess
+  access:
+  - TsfmcEngineering
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: NpcFactionMember
+      factions:
+      - TSFMC
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+  - !type:AddLanguageSpecial
+    languagesSpoken:
+    - SolCommon
+    languagesUnderstood:
+    - SolCommon
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: TsfCommandingOfficerGear
+  equipment:
+    pocket1: WeaponEnergyGunMultiphase
+    pocket2: EnergySwordNfsd
+  storage:
+    back:
+    - Multitool
+    - DoorRemoteNfsd
+    - BaseSecurityUplinkRadioSheriff
+    - ShipVoucherTsfmcColonel
+    - PhoneInstrumentHigh

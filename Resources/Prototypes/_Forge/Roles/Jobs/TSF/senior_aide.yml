@@ -1,0 +1,52 @@
+- type: job
+  id: TsfSeniorAide
+  name: job-name-tsf-senior-aide
+  description: job-description-tsf-senior-aide
+  playTimeTracker: JobTsfSeniorAide
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 28800
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 7200
+  alternateRequirementSets:
+    longerPlaytimeLessSec:
+    - !type:OverallPlaytimeRequirement
+      time: 36000
+  startingGear: TsfSeniorAideGear
+  icon: JobIconTsfSeniorAide
+  supervisors: job-supervisors-tsf-commanding-officer
+  canBeAntag: false
+ # guides: [ BasicLore, TransSolarFederation ] # Forge-Change-delete
+  weight: 105
+  displayWeight: 16
+  accessGroups:
+  - TsfGeneralAccess
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: NpcFactionMember
+      factions:
+      - TSFMC
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:AddLanguageSpecial
+    languagesSpoken:
+    - SolCommon
+    languagesUnderstood:
+    - SolCommon
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: TsfSeniorAideGear
+  equipment:
+    pocket1: HyperlinkBookSpaceLaw
+    pocket2: BoxFolderClipboardPal
+  storage:
+    back:
+    - Flash
+    - BoxFolderPalBrown
+    - BoxFolderNfsdForms
+    - RubberStampPal

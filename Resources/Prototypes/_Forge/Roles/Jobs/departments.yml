@@ -27,3 +27,19 @@
   - Quack
   - Foreman
   - Flunky
+  
+- type: department
+  id: TSF
+  name: department-TSF
+  description: department-TSF-description
+  color: "#2d6f9f"
+  weight: 55
+  roles:
+  - TsfCommandingOfficer
+  - TsfExecutiveOfficer
+  - TsfSeniorOfficer
+  - TsfSeniorAide
+  - TsfAmbassador
+  - TsfRanger
+  - TsfRecruit
+  - TsfEngineer

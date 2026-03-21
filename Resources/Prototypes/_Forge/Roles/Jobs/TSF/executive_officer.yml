@@ -1,0 +1,57 @@
+- type: job
+  id: TsfExecutiveOfficer
+  name: job-name-tsf-executive-officer
+  description: job-description-tsf-executive-officer
+  playTimeTracker: JobTsfExecutiveOfficer
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 72000
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 36000
+    - !type:RoleTimeRequirement
+      role: JobSeniorOfficer
+      time: 10800
+  startingGear: TsfExecutiveOfficerGear
+  icon: JobIconTsfExecutiveOfficer
+  supervisors: job-supervisors-tsf-commanding-officer
+  weight: 150
+  displayWeight: 60
+  canBeAntag: false
+ # guides: [ BasicLore, TransSolarFederation ] # Forge-Change-delete
+  access:
+  - Armory
+  - Sergeant
+  - Bailiff
+  - Medical
+  - Chemistry
+  - TsfmcEngineering
+  accessGroups:
+  - TsfGeneralAccess
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: NpcFactionMember
+      factions:
+      - TSFMC
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:AddLanguageSpecial
+    languagesSpoken:
+    - SolCommon
+    languagesUnderstood:
+    - SolCommon
+  - !type:GiveItemOnHolidaySpecial
+    holiday: FrontierBirthday
+    prototype: FrontierBirthdayGift
+
+- type: startingGear
+  id: TsfExecutiveOfficerGear
+  equipment:
+    pocket1: WeaponPistolMk58
+  storage:
+    back:
+    - Magazine45_ACPPistolFMJ
+    - BaseSecurityUplinkRadioCaptain
+    - RubberStampBailiff
+    - RadioHandheldNF
