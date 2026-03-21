@@ -87,7 +87,6 @@
   recipeUnlocks:
   - FlyssaVoucherTSF
   technologyPrerequisites:
-  - TsfSynthalloyProduction
   - TsfAltair
   position: 13, 14
 
@@ -156,19 +155,6 @@
   technologyPrerequisites:
   - TsfForensics
   position: 11, -2
-
-- type: technology
-  id: TsfSynthalloyProduction
-  name: research-technology-tsfmc-synthalloy
-  entityIcon: MaterialSynthalloy
-  discipline: TsfmcGear
-  tier: 3
-  cost: 50000
-  recipeUnlocks:
-  - SynthalloyProductionTsf
-  technologyPrerequisites:
-  - UniversalMaterialResearchT3
-  position: 13, 11
 
 - type: technology
   id: TSFBasicBorgModule

@@ -31,7 +31,7 @@
   parent: MonoHardsuitT3Recipe
   result: ClothingOuterHardsuitCybersunStealth
 
-# T3 synthalloy
+# T3 plastitanium
 
 - type: latheRecipe
   id: ClothingOuterHardsuitJuggernautRogue
