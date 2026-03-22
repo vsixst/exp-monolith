@@ -49,6 +49,7 @@ internal sealed partial class ChatManager : IChatManager
     [Dependency] private readonly PlayerRateLimitManager _rateLimitManager = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly DiscordChatLink _discordLink = default!;
+    [Dependency] private readonly SponsorManager _sponsors = default!; // Forge-Change
 
     /// <summary>
     /// The maximum length a player-sent message can be sent
@@ -295,15 +296,20 @@ internal sealed partial class ChatManager : IChatManager
 
         Color? colorOverride = null;
         var wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName",player.Name), ("message", FormattedMessage.EscapeText(message)));
-        if (_adminManager.HasAdminFlag(player, AdminFlags.Admin))
+        if (_adminManager.HasAdminFlag(player, AdminFlags.NameColor))
         {
             var prefs = _preferencesManager.GetPreferences(player.UserId);
             colorOverride = prefs.AdminOOCColor;
         }
-        if (_netConfigManager.GetClientCVar(player.Channel, CCVars.ShowOocPatronColor) &&
-            player.Channel.UserData.PatronTier is { } patron &&
-            PatronOocColors.TryGetValue(patron, out var patronColor) &&
-            !string.IsNullOrEmpty(patronColor))
+        // Forge-Change-Start
+        if (_sponsors.TryGetSponsor(player.UserId, out SponsorLevel level)
+            && _sponsors.TryGetSponsorColor(level, out var sponsorColor)
+            && !_adminManager.HasAdminFlag(player, AdminFlags.Admin))
+        {
+            wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", sponsorColor), ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
+        }
+        // Forge-Change-End
+        if (_netConfigManager.GetClientCVar(player.Channel, CCVars.ShowOocPatronColor) && player.Channel.UserData.PatronTier is { } patron && PatronOocColors.TryGetValue(patron, out var patronColor))
         {
             wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", patronColor),("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
         }

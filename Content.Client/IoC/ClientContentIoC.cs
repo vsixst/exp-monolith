@@ -1,3 +1,5 @@
+using Content.Client._Forge.DiscordAuth; // Forge-Change
+using Content.Client._Forge.JoinQueue; // Forge-Change
 using Content.Client._Forge.Sponsor; // Forge-Change
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
@@ -64,6 +66,8 @@ namespace Content.Client.IoC
             collection.Register<TitleWindowManager>();
 
             // Forge-Change: register sponsor manager on client like in Frontier1
+            collection.Register<JoinQueueManager>();
+            collection.Register<DiscordAuthManager>();
             collection.Register<SponsorManager>();
             collection.Register<ISharedSponsorManager, SponsorManager>();
         }
