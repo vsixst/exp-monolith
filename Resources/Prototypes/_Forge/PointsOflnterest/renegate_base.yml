@@ -34,7 +34,7 @@
         - type: StationNameSetup
           mapNameTemplate: 'Ренегатский Аванпост'
         - type: ExtraStationInformation
-          iconPath: /Textures/_NF/Interface/Pirate/piratelogo.png
+          icon: /Textures/_NF/Interface/Pirate/piratelogo.png
           stationSubtext: 'frontier-lobby-renegate-subtext'
           stationDescription: 'frontier-lobby-renegate-description'
         - type: StationJobs
