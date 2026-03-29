@@ -96,7 +96,7 @@
 
 - type: entity
   id: BorgModulePDVStandardAssault
-  parent: [ BaseBorgModuleSyndicateAssault, BaseProviderBorgModule, BaseFactionGearPDVT2 ]
+  parent: [ BaseBorgModuleSyndicateAssault, BaseProviderBorgModule ] # Forge-Change-delete: BaseFactionGearPDVT2
   name: PDV basic assault cyborg module
   components:
   - type: Sprite
