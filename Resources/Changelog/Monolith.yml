@@ -19195,3 +19195,14 @@ Entries:
   id: 2111
   time: '2026-03-29T18:08:28.0000000+00:00'
   url: https://github.com/Monolith-Station/Monolith/pull/3623
+- author: Redrover1760
+  changes:
+    - type: Remove
+      message: Removed Bomb Collars. Collars are gross, man, eww.
+    - type: Add
+      message: >-
+        Added Nuke Collars. A sudden surge in the supply of nuclear material has
+        redefined the nuclear warfare meta.
+  id: 2112
+  time: '2026-03-29T18:09:11.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/3619
