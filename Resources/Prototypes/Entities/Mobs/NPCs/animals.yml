@@ -1464,6 +1464,7 @@
     - VimPilot
     - DoorBumpOpener
     - AnomalyHost
+    - CanPilot # Mono
   - type: Reactive
     groups:
       Flammable: [ Touch ]
