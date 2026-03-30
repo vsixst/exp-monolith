@@ -11,12 +11,12 @@ job-name-pilot = Пилот
 job-name-pirate = Пират
 job-name-pirate-captain = Пиратский Капитан
 job-name-pirate-first-mate = Пиратский Боцман
-job-name-security-guard = Офицер АФ
+job-name-security-guard = NT Офицер ЦА
 job-name-sheriff = Шериф
-job-name-stc = Диспетчер Аванпоста
-job-name-sr = Представитель Фронтира
+job-name-stc = NT Диспетчер ЦА
+job-name-sr = NT Представитель ЦА
 job-name-pal = Представитель ЮД
-job-name-doc = Менеджер медицинских операций
+job-name-doc = EMS Менеджер МД
 # Role timers - Make these alphabetical or I cut you
 JobERTMailCarrier = ОБР почтальон
 JobMercenary = Наёмник
@@ -25,7 +25,7 @@ JobPirate = Пират
 JobPirateCaptain = Пиратский Капитан
 JobPirateFirstMate = Пиратский Боцман
 JobSecurityGuard = Охранник Аванпоста
-JobSTC = Диспетчер Аванпоста
+JobSTC = NT Диспетчер ЦА
 # Upstream Removed
 job-name-senior-engineer = Ведущий Инженер
 job-name-senior-researcher = Ведущий Учёный

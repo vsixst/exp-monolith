@@ -120,6 +120,11 @@ public sealed class CompanySystem : EntitySystem
                 var audioParams = AudioParams.Default.WithVolume(-5f);
                 _audio.PlayPvs(proto.SpawnSound, args.Mob, audioParams);
             }
+
+            foreach (var special in proto.Special)
+            {
+                special.AfterEquip(args.Mob);
+            }
         }
         // Forge-change-end
 

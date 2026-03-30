@@ -34,7 +34,7 @@
                         StyleClasses="BackgroundDark"
                         HorizontalExpand="True"
                         VerticalExpand="True">
-            <ScrollContainer VerticalExpand="True" HorizontalExpand="True">
+            <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
                 <RichTextLabel Name="CompanyDescription"
                                Access="Public"
                                VerticalAlignment="Top"

@@ -1,6 +1,5 @@
 company-select-button = Выбрать
 company-leave-button = Покинуть
-humanoid-profile-editor-company-label = Компания:
 company-examine = Состоит в: {$company}
 
 # Company examination text with gender-appropriate pronouns

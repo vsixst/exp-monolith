@@ -1,5 +1,6 @@
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio; // Forge-change
+using Content.Shared.Roles; // Forge-change
 
 namespace Content.Shared._Mono.Company;
 
@@ -67,5 +68,12 @@ public sealed partial class CompanyPrototype : IPrototype
 
     [DataField("spawnSound")]
     public SoundSpecifier? SpawnSound;
+
+    [DataField("special", serverOnly: true)]
+    public JobSpecial[] Special { get; private set; } = Array.Empty<JobSpecial>();
+
+    // Disabled = closed company, hidden = hide. ok im stupid but ehehe
+    [DataField("hidden")]
+    public bool Hidden { get; private set; } = false;
     // Forge-change-end
 }

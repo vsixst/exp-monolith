@@ -61,6 +61,9 @@ public sealed partial class CompanySelectControl : BoxContainer
 
         foreach (var company in _companies)
         {
+            if (company.Hidden)
+            continue;
+
             var companyId = company.ID;
             var button = new Button
             {
