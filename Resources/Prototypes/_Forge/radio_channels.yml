@@ -52,7 +52,7 @@
   name: chat-radio-trauma
   keycode: 'и'
   frequency: 1356
-  color: "#57b8f0"
+  color: "#009e79"
 
 # Company channel
 - type: radioChannel
@@ -70,4 +70,3 @@
   frequency: 7002
   color: "#7a0303"
   longRange: true
-  color: "#009e79"
