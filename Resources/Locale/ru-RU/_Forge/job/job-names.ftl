@@ -7,6 +7,7 @@ department-TSF = Транс-Солнечная Федерация
 forge-job-name-outpostmedic = Врач АФ
 forge-job-name-outpostengineer = Инженер АФ
 forge-job-name-outpostservice = Работник АФ
+job-name-service-worker = Корпоративный Рабочий НТ
 # Syndicate
 forge-job-name-syndicommander = Командир
 forge-job-name-medsyn = Санитар Синдиката
@@ -16,6 +17,8 @@ forge-job-name-smugglerbodyguard = Телохранитель
 forge-job-name-stormtrooper = Штурмовик
 # paraMedical
 forge-job-name-paramedical = Парамедик
+job-name-md-medic = Парамедик TTI
+job-name-nt-medic = Врач TTI
 
 # Managment of the Sectoral Fleet
 job-title-msf-admiral = адмирал Флота
@@ -51,16 +54,16 @@ forge-job-name-flunky = ВКР Шестёрка
 JobTsfCommandingOfficer = ТСФ Командующий Офицер
 JobTsfExecutiveOfficer = ТСФ Исполнительный Офицер
 JobTsfSeniorOfficer = ТСФ Старший Офицер
-JobTsfSeniorAide = ТСФ Старший помощник
+JobTsfSeniorAide = ТСФ Младший Офицер
 JobTsfAmbassador = Посол Федерации
-JobTsfRanger = ТСФ Рейнджер
+JobTsfRanger = ТСФ Морпех
 JobTsfRecruit = ТСФ Новобранец
 job-name-tsf-commanding-officer = ТСФ Командующий Офицер
 job-name-tsf-senior-officer = ТСФ Старший Офицер
 job-name-tsf-executive-officer = ТСФ Исполнительный Офицер
-job-name-tsf-senior-aide = ТСФ Старший помощник
-job-name-tsf-ambassador = ТСФ Посол Федерации
-job-name-tsf-ranger = ТСФ Рейнджер
+job-name-tsf-senior-aide = ТСФ Младший Офицер
+job-name-tsf-ambassador = Посол Федерации
+job-name-tsf-ranger = ТСФ Морпех
 job-name-tsf-recruit = ТСФ Новобранец
 JobTsfEngineer = ТСФ Инженер
 job-name-tsf-engineer = ТСФ Инженер

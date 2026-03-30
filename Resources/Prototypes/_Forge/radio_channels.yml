@@ -49,8 +49,8 @@
 
 - type: radioChannel
   id: Hospital
-  name: chat-radio-medical
-  keycode: 'ю'
+  name: chat-radio-trauma
+  keycode: 'и'
   frequency: 1356
   color: "#57b8f0"
 
@@ -70,3 +70,4 @@
   frequency: 7002
   color: "#7a0303"
   longRange: true
+  color: "#009e79"

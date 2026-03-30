@@ -28,16 +28,16 @@
 - type: company
   id: MD
   form: Protagonist
-  name: Emergency Medical Society # Forge-change: locale-rename
-  color: "#3B8EEA"
+  name: Trauma Team International # Forge
+  color: "#00d1a0" # Forge
   disabled: true
   hidden: true # Forge-change: hide cauz' i dont have description and im lazy to create it. If u add the desc: please switch to false
 
 - type: company
   id: Colonial
   form: Protagonist
-  name: Nanotrasen
-  color: "#334e6d"
+  name: NanoTrasen # Forge
+  color: "#334e6d" # Forge
   disabled: true
   hidden: true # Forge-change: hide cauz' i dont have description and im lazy to create it. If u add the desc: please switch to false
 
