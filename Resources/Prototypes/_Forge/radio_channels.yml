@@ -1,32 +1,9 @@
-# - type: radioChannel
-#   id: SyndicateSmuggler
-#   name: radio-smuggler
-#   keycode: 'й'
-#   frequency: 1246
-#   color: "#9e1500"
-#   longRange: true
-
-- type: radioChannel
-  id: SyndicateShturm
-  name: radio-shturm
-  keycode: 'у'
-  frequency: 5603
-  color: "#680721"
-  longRange: true
-
 - type: radioChannel
   id: MercenaryFM
   name: mercenaryfm-radio
   keycode: 'р'
   frequency: 1063
   color: "#376333"
-
-- type: radioChannel
-  id: Hospital
-  name: radio-hospital
-  keycode: 'г'
-  frequency: 1165
-  color: "#75baf3"
 
 - type: radioChannel
   id: Renegade
@@ -55,3 +32,24 @@
   keycode: 'й'
   frequency: 1246
   color: "#ab7a52"
+
+- type: radioChannel
+  id: EmpireCommand
+  name: chat-radio-imperial-command
+  keycode: 'ф'
+  frequency: 1247
+  color: "#c49a6c"
+
+- type: radioChannel
+  id: SyndicateShturm
+  name: chat-radio-syndicate
+  keycode: 'э'
+  frequency: 1214
+  color: "#9f5253"
+
+- type: radioChannel
+  id: Hospital
+  name: chat-radio-medical
+  keycode: 'ю'
+  frequency: 1356
+  color: "#57b8f0"

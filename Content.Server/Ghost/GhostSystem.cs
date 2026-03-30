@@ -20,6 +20,7 @@ using Content.Shared.Eye;
 using Content.Shared.FixedPoint;
 using Content.Shared.Follower;
 using Content.Shared.Ghost;
+using Content.Shared.GhostTypes;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
@@ -73,6 +74,7 @@ namespace Content.Server.Ghost
         [Dependency] private readonly IAdminManager _admin = default!; // Frontier
         [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
         [Dependency] private readonly SponsorManager _sponsors = default!; // Forge-Change
+        [Dependency] private readonly GhostSpriteStateSystem _ghostState = default!;
 
         private EntityQuery<GhostComponent> _ghostQuery;
         private EntityQuery<PhysicsComponent> _physicsQuery;
@@ -557,9 +559,9 @@ namespace Content.Server.Ghost
                 return null;
             }
 
-            var ghost = SpawnAtPosition(GameTicker.ObserverPrototypeName, spawnPosition.Value);
-
-            // Forge-Change-Start
+            // Forge-Change: spawn exactly one observer — do not call SpawnAtPosition here and then Spawn again
+            // (that leaked a MobObserver on every ghost/latejoin observer, stacking dozens at the spawn point).
+            EntityUid ghost;
             var user = mind.Comp.UserId;
             try
             {
@@ -570,7 +572,7 @@ namespace Content.Server.Ghost
                 }
                 else
                 {
-                    ghost = Spawn(GameTicker.ObserverPrototypeName, spawnPosition.Value);
+                    ghost = SpawnAtPosition(GameTicker.ObserverPrototypeName, spawnPosition.Value);
                 }
 
                 if (!HasComp<GhostComponent>(ghost))
@@ -584,9 +586,17 @@ namespace Content.Server.Ghost
                 Log.Error($"Failed to spawn ghost: {ex}");
                 return null;
             }
-            // Forge-Change-End
 
             var ghostComponent = Comp<GhostComponent>(ghost);
+
+	    // Corvax-forge-start
+	    /*
+            if (TryComp<GhostSpriteStateComponent>(ghost, out var state))  // If more TryComps are added this should be turned into an event
+            {
+                _ghostState.SetGhostSprite((ghost, state), mind);
+            }
+	    */
+	    // Corvax-forge-end
 
             // Try setting the ghost entity name to either the character name or the player name.
             // If all else fails, it'll default to the default entity prototype name, "observer".

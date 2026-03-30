@@ -34,14 +34,14 @@
         - type: StationNameSetup
           mapNameTemplate: 'Ренегатский Аванпост'
         - type: ExtraStationInformation
-          iconPath: /Textures/_NF/Interface/Pirate/piratelogo.png
+          icon: /Textures/_NF/Interface/Pirate/piratelogo.png
           stationSubtext: 'frontier-lobby-renegate-subtext'
           stationDescription: 'frontier-lobby-renegate-description'
         - type: StationJobs
           availableJobs:
             Baron: [ 1, 1 ]
             Draftsman: [ 1, 1 ]
-            Flunky: [ -1, -1 ]
+            Flunky: [ 5, 5 ]
             Foreman: [ 2, 2 ]
             Overseer: [ 1, 1]
             Quack: [ 2, 2 ]

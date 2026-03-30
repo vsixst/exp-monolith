@@ -8,24 +8,26 @@
 
 # Notes: Wow.
 #
-- type: pointOfInterest
-  id: Jupiter
-  parent: [BaseMobilePOI, BaseRepairablePOI]
-  name: 'PDV Jupiter Class Carrier'
-  minimumDistance: 17000
-  maximumDistance: 19000
-  spawnGamePreset: [ NFAdventure, NFPirate, MonoStandard, MonoRogueTSF, MonoRogueUSSP, MonoADS, MonoChimera, MonoMixed, MonoAllAtOnce ]
-  spawnGroup: Required
-  gridPath: /Maps/_Mono/POI/jupiter.yml
-  addComponents:
-  - type: IFF
-    color: "#d1bf58"
-    flags: [HideLabel]
-    readOnly: false
+# Forge-change-start - Disable till remap.
+# - type: pointOfInterest
+#   id: Jupiter
+#   parent: [BaseMobilePOI, BaseRepairablePOI]
+#   name: 'Авианосец класса «Юпитер» ПДВ'
+#   minimumDistance: 17000
+#   maximumDistance: 19000
+#   spawnGamePreset: [ NFAdventure, NFPirate, MonoStandard, MonoRogueTSF, MonoRogueUSSP, MonoADS, MonoChimera, MonoMixed, MonoAllAtOnce ]
+#   spawnGroup: Required
+#   gridPath: /Maps/_Mono/POI/jupiter.yml
+#   addComponents:
+#   - type: IFF
+#     color: "#d1bf58"
+#     flags: [HideLabel]
+#     readOnly: false
+# Forge-change-end
 
 - type: gameMap
   id: Jupiter
-  mapName: 'PDV Jupiter Class Carrier'
+  mapName: 'Авианосец класса «Юпитер» ПДВ'
   mapPath: /Maps/_Mono/POI/jupiter.yml
   minPlayers: 0
   stations:
@@ -33,9 +35,9 @@
       stationProto: RecordsFrontierOutpostCargo
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'PDV Jupiter Class Carrier'
+          mapNameTemplate: 'Авианосец класса «Юпитер» ПДВ'
         - type: ExtraStationInformation
-          iconPath: /Textures/_NF/Interface/Pirate/piratelogo.png
+          icon: /Textures/_NF/Interface/Pirate/piratelogo.png
           stationSubtext: 'frontier-lobby-jupiter-subtext'
           stationDescription: 'frontier-lobby-jupiter-description'
           lobbySortOrder: 2

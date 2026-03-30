@@ -7,8 +7,6 @@ shipyard-console-limited = Слишком много активных шаттл
 
 shipyard-console-unassign-deed = Отвязать
 shipyard-console-deed-unassigned = Шаттл был успешно отвязан от ID карты.
-shipyard-console-confirm-unassign = Вы уверены?
 shipyard-console-unassign-cooldown = Подождите {$minutes} минут, прежде чем отвязать шаттл.
 shipyard-console-rename-label = Переименовать
-shipyard-console-rename-placeholder = Название
 shipyard-console-name-empty = Название не может быть пустым

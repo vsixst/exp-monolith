@@ -30,13 +30,21 @@ public sealed class SpaceTextDisplaySystem : EntitySystem
         SpaceBiomePrototype biome = _protMan.Index<SpaceBiomePrototype>(ev.Id);
         _overlay.Reset();
         _overlay.ResetDescription();
-        _overlay.Text = biome.Name;
-        _overlay.TextDescription = biome.Description;
-        _overlay.CharInterval = TimeSpan.FromSeconds(2f / biome.Name.Length);
-        if (_overlay.TextDescription == "")                   //if we have a biome with no description, it's default is "" and that has length 0.
-            _overlay.CharIntervalDescription = TimeSpan.Zero;       //we need to calculate it here because otherwise...
+        // Forge-Change-start: space biome names and descriptions
+        var nameKey = $"crescent-space-biome-{biome.ID}-name";
+        _overlay.Text = Loc.TryGetString(nameKey, out var locName) ? locName : biome.Name;
+
+        var descKey = $"crescent-space-biome-{biome.ID}-desc";
+        _overlay.TextDescription = string.IsNullOrEmpty(biome.Description)
+            ? ""
+            : (Loc.TryGetString(descKey, out var locDesc) ? locDesc : biome.Description);
+
+        _overlay.CharInterval = TimeSpan.FromSeconds(2f / Math.Max(_overlay.Text.Length, 1));
+        if (_overlay.TextDescription == "")
+            _overlay.CharIntervalDescription = TimeSpan.Zero;
         else
-            _overlay.CharIntervalDescription = TimeSpan.FromSeconds(2f / biome.Description.Length);      //this would throw an exception
+            _overlay.CharIntervalDescription = TimeSpan.FromSeconds(2f / Math.Max(_overlay.TextDescription.Length, 1));
+        // Forge-Change-end: space biome names and descriptions
     }
 
     private void OnNewVesselEntered(ref PlayerParentChangedMessage ev)
@@ -56,13 +64,13 @@ public sealed class SpaceTextDisplaySystem : EntitySystem
         if (_overlay.Text != null) //i dont know why this is here but im not touching it
             return;
 
-        _overlay.Text = name;
+        _overlay.Text = Loc.TryGetString(name, out var locVesselName) ? locVesselName : name; // Forge-Change: space biome names and descriptions
         _overlay.TextDescription = description; // fallback is "" if no description is found.
-        _overlay.CharInterval = TimeSpan.FromSeconds(2f / _overlay.Text.Length);
+        _overlay.CharInterval = TimeSpan.FromSeconds(2f / Math.Max(_overlay.Text!.Length, 1)); // Forge-Change: space biome names and descriptions
 
         if (_overlay.TextDescription == "")
             _overlay.CharIntervalDescription = TimeSpan.Zero; //if this is not done it tries dividing by 0 in the "else" clause
         else
-            _overlay.CharIntervalDescription = TimeSpan.FromSeconds(2f / _overlay.TextDescription.Length);
+            _overlay.CharIntervalDescription = TimeSpan.FromSeconds(2f / Math.Max(_overlay.TextDescription!.Length, 1)); // Forge-Change: space biome names and descriptions
     }
 }

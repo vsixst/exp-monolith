@@ -67,8 +67,13 @@ public abstract partial class SharedShuttleSystem
                 }
             }
         }
-
-        var labelText = string.IsNullOrEmpty(entName) ? Loc.GetString("shuttle-console-unknown") : entName;
+        // Forge-Change-start
+        var labelText = string.IsNullOrEmpty(entName)
+            ? Loc.GetString("shuttle-console-unknown")
+            : Loc.TryGetString(entName, out var localizedLabel)
+                ? localizedLabel
+                : entName;
+        // Forge-Change-end
 
         // Add company info if available
         if (companyName != null && companyColor != null)

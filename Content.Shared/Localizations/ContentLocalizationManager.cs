@@ -26,16 +26,36 @@ namespace Content.Shared.Localizations
 
         public void Initialize()
         {
+            // Corvax-Localization-Start
             var culture = new CultureInfo(Culture);
-            var fallbackCulture = new CultureInfo(FallbackCulture); // Corvax-Localization
+            var fallbackCulture = new CultureInfo(FallbackCulture);
 
             _loc.LoadCulture(culture);
-            _loc.LoadCulture(fallbackCulture); // Corvax-Localization
-            _loc.SetFallbackCluture(fallbackCulture); // Corvax-Localization
+            _loc.LoadCulture(fallbackCulture);
+
+            RegisterCommonFunctions(culture);
+            RegisterCommonFunctions(fallbackCulture);
+
+            _loc.AddFunction(culture, "MANY", FormatManyRussian);
+
+            /*
+             * The following language functions are specific to the english localization. When working on your own
+             * localization you should NOT modify these, instead add new functions specific to your language/culture.
+             * This ensures the english translations continue to work as expected when fallbacks are needed.
+             */
+
+            _loc.AddFunction(fallbackCulture, "MAKEPLURAL", FormatMakePlural);
+            _loc.AddFunction(fallbackCulture, "MANY", FormatMany);
+
+            _loc.SetCulture(culture);
+            _loc.SetFallbackCluture(fallbackCulture);
+        }
+
+        private void RegisterCommonFunctions(CultureInfo culture)
+        {
             _loc.AddFunction(culture, "PRESSURE", FormatPressure);
             _loc.AddFunction(culture, "POWERWATTS", FormatPowerWatts);
             _loc.AddFunction(culture, "POWERJOULES", FormatPowerJoules);
-            // NOTE: ENERGYWATTHOURS() still takes a value in joules, but formats as watt-hours.
             _loc.AddFunction(culture, "ENERGYWATTHOURS", FormatEnergyWattHours);
             _loc.AddFunction(culture, "UNITS", FormatUnits);
             _loc.AddFunction(culture, "TOSTRING", args => FormatToString(culture, args));
@@ -44,30 +64,8 @@ namespace Content.Shared.Localizations
             _loc.AddFunction(culture, "NATURALPERCENT", FormatNaturalPercent);
             _loc.AddFunction(culture, "PLAYTIME", FormatPlaytime);
             _loc.AddFunction(culture, "GASQUANTITY", FormatGasQuantity); // Frontier
-            _loc.AddFunction(culture, "MANY", FormatManyRussian); // Corvax-Localization
-
-
-            /*
-             * The following language functions are specific to the english localization. When working on your own
-             * localization you should NOT modify these, instead add new functions specific to your language/culture.
-             * This ensures the english translations continue to work as expected when fallbacks are needed.
-             */
-            var cultureEn = new CultureInfo("en-US");
-
-            _loc.AddFunction(cultureEn, "MAKEPLURAL", FormatMakePlural);
-            _loc.AddFunction(cultureEn, "MANY", FormatMany);
-            _loc.AddFunction(cultureEn, "PRESSURE", FormatPressure);
-            _loc.AddFunction(cultureEn, "POWERWATTS", FormatPowerWatts);
-            _loc.AddFunction(cultureEn, "POWERJOULES", FormatPowerJoules);
-            _loc.AddFunction(cultureEn, "ENERGYWATTHOURS", FormatEnergyWattHours);
-            _loc.AddFunction(cultureEn, "UNITS", FormatUnits);
-            _loc.AddFunction(cultureEn, "TOSTRING", args => FormatToString(cultureEn, args));
-            _loc.AddFunction(cultureEn, "LOC", FormatLoc);
-            _loc.AddFunction(cultureEn, "NATURALFIXED", FormatNaturalFixed);
-            _loc.AddFunction(cultureEn, "NATURALPERCENT", FormatNaturalPercent);
-            _loc.AddFunction(cultureEn, "PLAYTIME", FormatPlaytime);
-            _loc.AddFunction(cultureEn, "GASQUANTITY", FormatGasQuantity); // Frontier
         }
+        // Corvax-Localization-End
 
         // Corvax-Localization: Added for Russian pluralization.
         // This function expects arguments in the format: MANY(count, "one", "few", "many").

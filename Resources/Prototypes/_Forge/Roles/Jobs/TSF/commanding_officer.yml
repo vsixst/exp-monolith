@@ -20,6 +20,7 @@
   supervisors: job-supervisors-tsf-high-command
   weight: 180
   displayWeight: 70
+  assignedCompany: TSF
   canBeAntag: false
  # guides: [ BasicLore, TransSolarFederation ] # Forge-Change-delete
   accessGroups:

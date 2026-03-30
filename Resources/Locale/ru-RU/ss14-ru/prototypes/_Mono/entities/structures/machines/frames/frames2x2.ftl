@@ -1,4 +1,6 @@
-ent-UnfinishedMachineFrame2x2 = Unfinished
-    .desc = A machine under construction. Needs more parts.
-ent-MachineFrame2x2 = Ready
-ent-MachineFrameDestroyed2x2 = destroyed machine frame (2x2)
+ent-UnfinishedMachineFrame2x2 = недостроенный каркас машины (2×2)
+    .desc = Машина в процессе сборки. Нужны проводка, плата и комплектующие.
+ent-MachineFrame2x2 = каркас машины (2×2)
+    .desc = Каркас с разъёмами под плату машины и компоненты. Подключите питание и завершите сборку.
+ent-MachineFrameDestroyed2x2 = разрушенный каркас машины (2×2)
+    .desc = Погнутый металл и обломки. Можно разобрать сваркой и вернуть часть стали.

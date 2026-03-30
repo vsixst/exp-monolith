@@ -11,7 +11,7 @@
 - type: pointOfInterest
   id: TSFMCOutpost
   parent: [BasePOI, BaseRepairablePOI]
-  name: 'TSFMC Secondary Outpost'
+  name: 'Вторичный аванпост ТСФ'
   minimumDistance: 11000
   maximumDistance: 14000
   spawnGamePreset: [ NFAdventure, NFPirate, MonoStandard, MonoRogueTSF, MonoTSFUSSP, MonoADS, MonoChimera, MonoMixed, MonoAllAtOnce ]
@@ -25,7 +25,7 @@
 
 - type: gameMap
   id: TSFMCOutpost
-  mapName: 'TSFMC Secondary Outpost'
+  mapName: 'Вторичный аванпост ТСФ'
   mapPath: /Maps/_Mono/POI/tsfmcoutpost.yml
   minPlayers: 0
   stations:
@@ -33,9 +33,11 @@
       stationProto: SecurityFrontierOutpost
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'TSFMC Secondary Outpost'
+          mapNameTemplate: 'Вторичный аванпост ТСФ'
         - type: ExtraStationInformation
-          iconPath: /Textures/_NF/Structures/Decoration/banner.rsi/nfsd-banner.png
+          icon:
+            sprite: _NF/Structures/Decoration/banner.rsi
+            state: nfsd-banner
           stationSubtext: 'frontier-lobby-tsfmc-secondary-subtext'
           stationDescription: 'frontier-lobby-tsfmc-secondary-description'
           lobbySortOrder: 2

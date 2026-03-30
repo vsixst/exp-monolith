@@ -14,6 +14,8 @@
   - PetsNT
   - TSFMC
   - TSFMCTurret
+  - Empire
+  - EmpireTurret
   - MD
   - Passive
   - ContrabandDetection
@@ -25,6 +27,7 @@
   - PetsNT
   - AllHostile
   - Wizard
+  defaultHostileIncluded: false # Mono
 
 - type: npcFaction
   id: Passive

@@ -9,6 +9,9 @@ station-event-chimera-shuttle-detected = Unidentified vessel detected near local
 # asakim ship spawns
 station-event-asakim-shuttle-detected = Unidentified Pre-Fracture vessel detected near local space. Caution is advised.
 
+# Grid IFF name (MetaData.name = fluent id); resolved in SharedShuttleSystem.GetIFFLabel
+mono-shuttle-asakim-unidentified-craft = Unidentified Craft
+
 # redacted AI ship borg stuff
 
 ghost-role-information-redacted-borg = Automated Defense Manipulator

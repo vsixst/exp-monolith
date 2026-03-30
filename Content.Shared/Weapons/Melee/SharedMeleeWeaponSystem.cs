@@ -659,7 +659,8 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         foreach (var entity in entities)
         {
-            if (entity == user ||
+            if (!entity.IsValid() || // Forge-Change
+                entity == user ||
                 !damageQuery.HasComponent(entity))
                 continue;
 

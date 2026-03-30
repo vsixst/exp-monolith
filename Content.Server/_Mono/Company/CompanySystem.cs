@@ -4,6 +4,7 @@ using Content.Shared.Access.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
+using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
 using Content.Server.Database; // Forge-Change: company whitelist
 using System.Threading.Tasks; // Forge-Change: company whitelist
@@ -28,89 +29,9 @@ public sealed class CompanySystem : EntitySystem
     [Dependency] private readonly AudioSystem _audio = default!; // Forge-change: SpawnSound
     [Dependency] private readonly IServerDbManager _db = default!; // Forge-Change: company whitelist
 
+
     // Dictionary to store original company preferences for players
     private readonly Dictionary<string, string> _playerOriginalCompanies = new();
-
-    private readonly HashSet<string> _tsfJobs = new()
-    {
-        "Sheriff",
-        "Bailiff",
-        "SeniorOfficer", // Sergeant
-        "Deputy",
-        "Brigmedic",
-        "NFDetective",
-        "PublicAffairsLiaison",
-        "Cadet",
-        "TsfEngineer",
-        "TsfBorg",
-        // Forge-change-start
-        "TsfCommandingOfficer",
-        "TsfExecutiveOfficer",
-        "TsfSeniorOfficer",
-        "TsfSeniorAide",
-        "TsfAmbassador",
-        "TsfRanger",
-        "TsfRecruit",
-        "TsfEngineer",
-        // Forge-change-end
-    };
-
-    private readonly HashSet<string> _rogues = new()
-    {
-        "PirateCaptain",
-        "PirateFirstMate",
-        "Pirate",
-        "PDVDenasvar",
-        "PDVInfiltrator",
-        "PdvBorg",
-    };
-
-    private readonly HashSet<string> _imperial = new()
-    {
-        "Praefect",
-        "Arbiter",
-        "Cardinal",
-        "Inquisitor",
-        "Consul",
-        "Praetorian",
-        "Auxilia",
-        "Neophyte",
-    };
-
-    private readonly HashSet<string> _renegates = new()
-    {
-        "Baron",
-        "Draftsman",
-        "Overseer",
-        "Quack",
-        "Foreman",
-        "Flunky",
-    };
-
-    // private readonly HashSet<string> _usspJobs = new()
-    // {
-    //    "USSPCommissar",
-    //    "USSPSergeant",
-    //    "USSPCorporal",
-    //    "USSPMedic",
-    //    "USSPRifleman"
-    //};
-
-    private readonly HashSet<string> _colonialJobs = new()
-    {
-        "StationRepresentative",
-        "StationTrafficController",
-        "SecurityGuard",
-        "NFJanitor",
-        "MailCarrier",
-        "Valet",
-    };
-
-    private readonly HashSet<string> _mdJobs = new()
-    {
-        "DirectorOfCare",
-        "MdMedic",
-    };
 
     public override void Initialize()
     {
@@ -132,7 +53,7 @@ public sealed class CompanySystem : EntitySystem
     private async void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent args) // Forge-Change: company whitelist
     {
         // Add the company component with the player's saved company
-        var companyComp = EnsureComp<Shared._Mono.Company.CompanyComponent>(args.Mob);
+        var companyComp = EnsureComp<CompanyComponent>(args.Mob);
 
         var playerId = args.Player.UserId.ToString();
         var profileCompany = args.Profile.Company;
@@ -143,45 +64,14 @@ public sealed class CompanySystem : EntitySystem
             _playerOriginalCompanies[playerId] = profileCompany;
         }
 
-        // todo - make this a switch statement or something lol. who cares.
-        // Check if player's job is one of the TSF jobs
-        if (args.JobId != null && _tsfJobs.Contains(args.JobId))
+        var assigned = false;
+        if (args.JobId != null)
         {
-            // Assign TSF company
-            companyComp.CompanyName = "TSF";
+            var job = _prototypeManager.Index<JobPrototype>(args.JobId);
+            companyComp.CompanyName = job.AssignedCompany;
+            assigned = companyComp.CompanyName != "None";
         }
-        // Check if player's job is one of the Rogue jobs
-        else if (args.JobId != null && _rogues.Contains(args.JobId))
-        {
-            // Assign Rogue company
-            companyComp.CompanyName = "PDV";
-        }
-        // Check if player's job is one of the USSP jobs
-        //else if (args.JobId != null && _usspJobs.Contains(args.JobId))
-        //{
-        //    // Assign USSP company
-        //    companyComp.CompanyName = "USSP";
-        //}
-        else if (args.JobId != null && _colonialJobs.Contains(args.JobId))
-        {
-            // Assign MD company
-            companyComp.CompanyName = "Nanotrasen"; // Forge-change: Colonial to NT
-        }
-        else if (args.JobId != null && _mdJobs.Contains(args.JobId))
-        {
-            // Assign MD company
-            companyComp.CompanyName = "Hospital"; // Forge-change: MD to Hospital
-        }
-        // Forge-change: add imperial and renegates
-        else if (args.JobId != null && _imperial.Contains(args.JobId))
-        {
-            companyComp.CompanyName = "Imperial";
-        }
-        else if (args.JobId != null && _renegates.Contains(args.JobId))
-        {
-            companyComp.CompanyName = "None";
-        }
-        else
+        if (!assigned)
         {
             // Only consider whitelist if the player has NO specific company preference
             bool loginFound = false;

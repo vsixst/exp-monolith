@@ -39,8 +39,9 @@ public sealed class SpaceBiomeTextOverlay : Overlay
     public SpaceBiomeTextOverlay()
     {
         IoCManager.InjectDependencies(this);
-        _font = _cache.GetFont("/Fonts/Iceberg/Iceberg-Regular.ttf", 25);
-        _descriptionfont = _cache.GetFont("/Fonts/Iceberg/Iceberg-Regular.ttf", 15);
+        // Noto Sans covers Cyrillic; Iceberg does not — Russian would render as missing glyphs / punctuation-only.
+        _font = _cache.GetFont("/Fonts/NotoSans/NotoSans-Regular.ttf", 25); // Forge-Change: space biome names and descriptions
+        _descriptionfont = _cache.GetFont("/Fonts/NotoSans/NotoSans-Regular.ttf", 15); // Forge-Change: space biome names and descriptions
     }
 
     public void Reset()

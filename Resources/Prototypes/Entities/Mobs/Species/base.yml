@@ -140,6 +140,7 @@
     - RadiationProtection
     - Drowsiness
     - Adrenaline
+    - ClawsGrowthSuppression # Mono
   - type: Body
     prototype: Human
     requiredLegs: 2
@@ -364,6 +365,7 @@
   - type: Appearance
   - type: HumanoidAppearance
     species: Human
+  - type: TTS # Corvax-TTS — preview dummies parent InventoryBase, not BaseMob; SetTTSVoice requires this
   - type: Body
     prototype: Human
     requiredLegs: 2
