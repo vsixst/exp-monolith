@@ -53,3 +53,20 @@
   keycode: 'ю'
   frequency: 1356
   color: "#57b8f0"
+
+# Company channel
+- type: radioChannel
+  id: ViperGroup
+  name: chat-radio-vipergroup
+  keycode: 'v'
+  frequency: 7001
+  color: "#B82121"
+  longRange: true
+
+- type: radioChannel
+  id: PaycheckBratva
+  name: chat-radio-paycheck
+  keycode: 'b'
+  frequency: 7002
+  color: "#7a0303"
+  longRange: true

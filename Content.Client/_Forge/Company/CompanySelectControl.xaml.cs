@@ -5,6 +5,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Localization;
 using Content.Shared._Mono.Company;
 using System.Linq;
+using Robust.Shared.Utility;
 
 namespace Content.Client._Forge.Company.UI;
 
@@ -121,7 +122,7 @@ public sealed partial class CompanySelectControl : BoxContainer
             ? Loc.GetString(company.Description)
             : Loc.GetString("company-none-description");
 
-        CompanyDescription.SetMessage(text);
+        CompanyDescription.SetMessage(FormattedMessage.FromMarkupPermissive(text));
         RefreshActions();
     }
 

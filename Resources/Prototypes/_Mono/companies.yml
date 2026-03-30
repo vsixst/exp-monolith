@@ -13,9 +13,9 @@
   id: TSF
   form: Protagonist
   name: Транс-Солнечная Федерация # Forge-change: locale
+  description: solarfed-company-description # Forge-change
   color: "#047ABD"
   disabled: true
-  hidden: true # Forge-change: hide cauz' i dont have description and im lazy to create it. If u add the desc: please switch to false
 
 - type: company
   id: PDV
@@ -169,7 +169,6 @@
   description: ullman-industries-description
   color: "#52326A"
   image: /Textures/_Mono/Companies/ullman_industries.png
-  disabled: true # Forge-change: hide
   spawnSound: !type:SoundPathSpecifier
     path: "/Audio/Ambience/Antag/pirate_start.ogg"
 
@@ -188,7 +187,6 @@
   description: blackhawkpmc-description
   color: "#419E23"
   image: /Textures/_Mono/Companies/BMC.png
-
 
 # Religious groups
 
@@ -210,7 +208,7 @@
 - type: company
   id: TheHive
   form: Protagonist
-  name: The Hive
+  name: Улей # Forge-change: locale The Hive
   description: The-Hive-description
   color: "#5918a8"
 
@@ -224,6 +222,9 @@
   color: "#7a0303"
   spawnSound: !type:SoundPathSpecifier
     path: "/Audio/Ambience/Antag/pirate_start.ogg"
+  special: # Forge-change
+  - !type:GiveItemSpecial
+    prototype: EncryptionKeyPaycheckBratva
 
 - type: company
   id: CerberusSurplusProvisions
@@ -273,6 +274,9 @@
   - Siege_Of_Malta_Never_Happened
   - gelliii
   - Uranio
+  special: # Forge-change
+  - !type:GiveItemSpecial
+    prototype: EncryptionKeyViperGroup
 
 - type: company
   id: RedSailCorsairs
