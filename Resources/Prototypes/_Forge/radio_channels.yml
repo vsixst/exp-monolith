@@ -68,5 +68,5 @@
   name: chat-radio-paycheck
   keycode: 'b'
   frequency: 7002
-  color: "#7a0303"
+  color: "#971f47"
   longRange: true

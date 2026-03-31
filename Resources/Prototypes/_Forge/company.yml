@@ -15,11 +15,10 @@
   form: Protagonist
   name: TechnicLogistic
   description: company-techniclogistic-description
+  note: techniclogistic-company-note
   color: "#83489d"
-  # image: /Textures/_NF/Structures/Decoration/banner.rsi/banner-wizard.png
   entityIcon: BannerTL
   disabled: true
-  hidden: true
   logins:
     - Eifall
     - IMERATOR
@@ -32,7 +31,6 @@
   name: Nexus Star Consortium
   description: company-nexus-description
   color: "#0f3b62"
-  # image: /Textures/_NF/Structures/Decoration/banner.rsi/banner-wizard.png
   entityIcon: BannerNSC
 
 - type: company

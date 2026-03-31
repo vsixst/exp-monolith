@@ -12,9 +12,6 @@ namespace Content.Client._Forge.Company.UI;
 [GenerateTypedNameReferences]
 public sealed partial class CompanySelectControl : BoxContainer
 {
-    private static readonly Color AvailableTint = new(0.78f, 1.00f, 0.78f, 1.00f);
-    private static readonly Color LockedTint = new(1.00f, 0.78f, 0.78f, 1.00f);
-
     public event Action<string>? OnCompanySelected;
 
     private List<CompanyPrototype> _companies = new();
@@ -107,22 +104,32 @@ public sealed partial class CompanySelectControl : BoxContainer
         if (company.ID == "None")
         {
             CompanyDescriptionPanel.Visible = false;
-            CompanyActionsPanel.Modulate = AvailableTint;
+            CompanyLockedStripe.Visible = false;
             RefreshActions();
             return;
         }
 
         CompanyDescriptionPanel.Visible = true;
         var isSelectable = _selectableCompanyIds.Contains(company.ID);
-        var tint = isSelectable ? AvailableTint : LockedTint;
-        CompanyDescriptionPanel.Modulate = tint;
-        CompanyActionsPanel.Modulate = tint;
+        CompanyLockedStripe.Visible = !isSelectable;
 
         var text = !string.IsNullOrEmpty(company.Description)
             ? Loc.GetString(company.Description)
             : Loc.GetString("company-none-description");
 
         CompanyDescription.SetMessage(FormattedMessage.FromMarkupPermissive(text));
+
+        var note = !string.IsNullOrEmpty(company.Note)
+            ? Loc.GetString(company.Note)
+            : null;
+
+        CompanyNotePanel.Visible = note != null;
+
+        if (note != null)
+        {
+            CompanyNote.SetMessage(FormattedMessage.FromMarkupPermissive(note));
+        }
+
         RefreshActions();
     }
 

@@ -89,12 +89,21 @@ namespace Content.Client.Lobby.UI
             ["Auxilia"] = "Imperial",
             ["Neophyte"] = "Imperial",
             // Renegates
-            ["Baron"] = "None",
-            ["Draftsman"] = "None",
-            ["Overseer"] = "None",
-            ["Quack"] = "None",
-            ["Foreman"] = "None",
-            ["Flunky"] = "None",
+            ["Baron"] = "Renegates",
+            ["Draftsman"] = "Renegates",
+            ["Overseer"] = "Renegates",
+            ["Quack"] = "Renegates",
+            ["Foreman"] = "Renegates",
+            ["Flunky"] = "Renegates",
+            // CC
+            ["StationRepresentative"] = "Colonial",
+            ["StationTrafficController"] = "Colonial",
+            ["CCServiceWorker"] = "Colonial",
+            ["SecurityGuard"] = "Colonial",
+            // MD
+            ["DirectorOfCare"] = "MD",
+            ["MdMedic"] = "MD",
+            ["NtMedic"] = "MD",
         };
         // Forge-Change-end: company whitelist
 

@@ -28,16 +28,16 @@
 - type: company
   id: MD
   form: Protagonist
-  name: Trauma Team International # Forge
-  color: "#00d1a0" # Forge
+  name: Trauma Team International # Forge-change
+  color: "#00d1a0" # Forge-change
   disabled: true
   hidden: true # Forge-change: hide cauz' i dont have description and im lazy to create it. If u add the desc: please switch to false
 
 - type: company
   id: Colonial
   form: Protagonist
-  name: NanoTrasen # Forge
-  color: "#334e6d" # Forge
+  name: NanoTrasen # Forge-change
+  color: "#334e6d" # Forge-change
   disabled: true
   hidden: true # Forge-change: hide cauz' i dont have description and im lazy to create it. If u add the desc: please switch to false
 
@@ -78,6 +78,7 @@
   form: Protagonist
   name: Drake Industries
   description: drake-industries-description
+  note: drake-industries-company-note
   color: "#C97D7D"
   image: /Textures/_Mono/Companies/drake_industries.png
 
@@ -86,6 +87,7 @@
   form: Protagonist
   name: Steel Hammer Manufacturing
   description: steel-hammer-description
+  note: steel-hammer-company-note
   color: "#92a2a1"
   image: /Textures/_Mono/Companies/steel_hammer.png
 
@@ -112,6 +114,7 @@
   color: "#B01340"
   disabled: false # Mercs are now USSP-pilled.
   description: ussp-description
+  note: ussp-company-note
   spawnSound: !type:SoundPathSpecifier
     path: "/Audio/Ambience/Antag/headrev_start.ogg"
 
@@ -211,6 +214,8 @@
   name: Улей # Forge-change: locale The Hive
   description: The-Hive-description
   color: "#5918a8"
+  spawnSound: !type:SoundPathSpecifier
+    path: "/Audio/Ambience/ambimystery.ogg"
 
 # Black Market Companies
 
@@ -219,7 +224,8 @@
   form: Antagonist
   name: Paycheck Bratva
   description: paycheck-bratva-description
-  color: "#7a0303"
+  note: paycheck-bratva-company-note
+  color: "#971f47"
   spawnSound: !type:SoundPathSpecifier
     path: "/Audio/Ambience/Antag/pirate_start.ogg"
   special: # Forge-change
@@ -252,9 +258,12 @@
   form: Antagonist
   name: Viper Group
   description: viper-group-description
+  note: viper-group-company-note
   color: "#B82121"
   image: /Textures/_Mono/Companies/thevipergroup.png # Example
   disabled: true
+  spawnSound: !type:SoundPathSpecifier
+    path: "/Audio/_Forge/Ambience/Antag/cut_reaper_spawn.ogg"
   logins:
   - Schizm1253
   - Androidonator

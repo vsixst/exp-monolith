@@ -75,5 +75,11 @@ public sealed partial class CompanyPrototype : IPrototype
     // Disabled = closed company, hidden = hide. ok im stupid but ehehe
     [DataField("hidden")]
     public bool Hidden { get; private set; } = false;
+
+    /// <summary>
+    /// Note about the company.
+    /// </summary>
+    [DataField("note", required: false)]
+    public string Note { get; private set; } = string.Empty;
     // Forge-change-end
 }
