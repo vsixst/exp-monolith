@@ -35,7 +35,7 @@
     sprite: Forge/Clothing/OuterClothing/Coats/Sub-lieutenant/coat_techniclogistic.rsi
 
 - type: entity
-  parent: [ClothingEyesGlassesSecurity, BaseFactionGearT0]
+  parent: [ClothingEyesGlassesSecurity, BaseFactionGearOtherFactionT0]
   id: ClothingEyesGlassesTL
   name: glasses TL
   suffix: TechnicLogistic
@@ -47,7 +47,7 @@
     sprite: Forge/Clothing/Eyes/Goggles/glasses_techniclogistic.rsi
 
 - type: entity
-  parent: [ClothingEyesNightVisionGoggles, ShowSecurityIcons, BaseFactionGearTSFT1]
+  parent: [ClothingEyesNightVisionGoggles, ShowSecurityIcons, BaseFactionGearOtherFactionT1]
   id: NFClothingEyesNightVisionGoggleTL
   name: night vision TL
   suffix: TechnicLogistic
@@ -68,7 +68,7 @@
     isEquipment: true
 
 - type: entity
-  parent: [ClothingHandsGlovesSyntheticBase, BaseFactionGearT0]
+  parent: [ClothingHandsGlovesSyntheticBase, BaseFactionGearOtherFactionT0]
   id: ClothingHandsGlovesCombatTL
   suffix: TechnicLogistic
   name: TechnicLogistic Combat Gloves
@@ -105,7 +105,7 @@
     sprite: Forge/Clothing/Uniforms/Jumpsuits/jumpsuit_techniclogistic.rsi
 
 - type: entity
-  parent: [ClothingMaskGas, BaseFactionGearT0]
+  parent: [ClothingMaskGas, BaseFactionGearOtherFactionT0]
   id: ClothingMaskGasTL
   name: gas mask TL
   suffix: TechnicLogistic
@@ -138,7 +138,7 @@
     sprite: Forge/Clothing/Belt/belt_techniclogistic.rsi
 
 - type: entity
-  parent: [ClothingOuterArmorHoS, ClothingOuterStorageBase, ClothingArmorPlate, BaseFactionGearT0]
+  parent: [ClothingOuterArmorHoS, ClothingOuterStorageBase, ClothingArmorPlate, BaseFactionGearOtherFactionT0]
   id: ClothingOuterArmorTL
   name: Self-Defense TechnicLogistic
   suffix: TechnicLogistic
@@ -151,7 +151,7 @@
     equippedState: equipped-OUTHERCLOTHING
 
 - type: entity
-  parent: [BaseFactionGearT0, ClothingHeadHelmetBasic]
+  parent: [BaseFactionGearOtherFactionT0, ClothingHeadHelmetBasic]
   id: ClothingHeadHelmetTL
   name: Forces TechnicLogistic
   suffix: TechnicLogistic
@@ -163,7 +163,7 @@
     sprite: Forge/Clothing/Head/Helmets/helmet_techniclogistic.rsi
 
 - type: entity
-  parent: [ClothingHeadsetAlt, BaseFactionGearT0]
+  parent: [ClothingHeadsetAlt, BaseFactionGearOtherFactionT0]
   id: ClothingHeadsetAltTL
   name: Headset TechnicLogistic
   suffix: TechnicLogistic
