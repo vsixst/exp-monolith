@@ -129,17 +129,17 @@ public sealed class CompanySystem : EntitySystem
     // Forge-Change-start: company whitelist
     private async Task<bool> IsCompanySelectable(ICommonSession session, CompanyPrototype company)
     {
-        if (!company.Disabled)
+        if (!company.Whitelisted)
             return true;
+
+        if (company.Hidden)
+            return false;
 
         return await IsCompanyWhitelisted(session, company);
     }
 
     private async Task<bool> IsCompanyWhitelisted(ICommonSession session, CompanyPrototype company)
     {
-        if (company.Logins.Contains(session.Name))
-            return true;
-
         return await _db.IsCompanyWhitelisted(session.UserId.UserId, company.ID);
     }
     // Forge-Change-end: company whitelist

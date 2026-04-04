@@ -15,14 +15,14 @@
   name: Транс-Солнечная Федерация # Forge-change: locale
   description: solarfed-company-description # Forge-change
   color: "#047ABD"
-  disabled: true
+  whitelisted: true
 
 - type: company
   id: PDV
   form: Antagonist
   name: PDV
   color: "#D2B48C"
-  disabled: true
+  whitelisted: true
   hidden: true # Forge-change: hide
 
 - type: company
@@ -30,7 +30,7 @@
   form: Protagonist
   name: Trauma Team International # Forge-change
   color: "#00d1a0" # Forge-change
-  disabled: true
+  whitelisted: true
   hidden: true # Forge-change: hide cauz' i dont have description and im lazy to create it. If u add the desc: please switch to false
 
 - type: company
@@ -38,7 +38,7 @@
   form: Protagonist
   name: NanoTrasen # Forge-change
   color: "#334e6d" # Forge-change
-  disabled: true
+  whitelisted: true
   hidden: true # Forge-change: hide cauz' i dont have description and im lazy to create it. If u add the desc: please switch to false
 
 - type: company
@@ -47,26 +47,27 @@
   name: Winter Solstice
   description: winter-solstice-description
   color: "#008CE3"
-  disabled: true
+  whitelisted: true
   hidden: true # Forge-change
-  logins: # admins only here !!! or your PR will be CLOSED!!!! also serves as a example for ur whitelisted factions
-  - localhost@Ark
-  - Ark
-  - DisguisedBear
-  - JuneCat
-  - AwareFoxy
-  - Avalon_Proto
-  - Archylle
-  - Arcticular
-  - ArtemisYK
-  - NigelSugar
-  - Reverence
-  - BluHNT
-  - DrOktober
-  - Archylle
-  - neoscav
-  - UnhipPaladin
-  - Onezero0
+  # Just write to Forge-admins and we will add you to TSFHC
+  # logins: # admins only here !!! or your PR will be CLOSED!!!! also serves as a example for ur whitelisted factions
+  # - localhost@Ark
+  # - Ark
+  # - DisguisedBear
+  # - JuneCat
+  # - AwareFoxy
+  # - Avalon_Proto
+  # - Archylle
+  # - Arcticular
+  # - ArtemisYK
+  # - NigelSugar
+  # - Reverence
+  # - BluHNT
+  # - DrOktober
+  # - Archylle
+  # - neoscav
+  # - UnhipPaladin
+  # - Onezero0
 # DO NOT TOUCH
 
 # ====TSF / Protag. Companies====
@@ -78,20 +79,22 @@
   form: Protagonist
   name: Drake Industries
   description: drake-industries-description
-  note: drake-industries-company-note
   color: "#C97D7D"
   image: /Textures/_Mono/Companies/drake_industries.png
-  icon: Drake # Forge-change
+  # Forge-change: add icon & note
+  icon: Drake
+  note: drake-industries-company-note
 
 - type: company
   id: SteelHammerManufacturing
   form: Protagonist
   name: Steel Hammer Manufacturing
   description: steel-hammer-description
-  note: steel-hammer-company-note
   color: "#92a2a1"
   image: /Textures/_Mono/Companies/steel_hammer.png
-  icon: SteelHammerManufacturing # Forge-change
+  # Forge-change: add icon & note
+  note: steel-hammer-company-note
+  icon: SteelHammerManufacturing
 
 - type: company
   id: HarmonyMedicalEnterprises
@@ -109,7 +112,7 @@
   description: midnight-arms-co-description
   color: "#FF2E2E"
   image: /Textures/_Mono/Companies/MACo.png
-  # Forge-change
+  # Forge-change: add icon & special's
   icon: MidnightArmsCo
   special:
   - !type:GiveItemSpecial
@@ -121,10 +124,10 @@
   form: Antagonist
   name: СССП(К) # Forge-change: locale and small rename: К = Кораблей
   color: "#B01340"
-  disabled: false # Mercs are now USSP-pilled.
+  whitelisted: false # Mercs are now USSP-pilled.
   description: ussp-description
+  # Forge-change: add icon, note & special's
   note: ussp-company-note
-  # Forge-change
   icon: USSP
   special:
   - !type:GiveItemSpecial
@@ -175,7 +178,7 @@
   description: universal-states-of-america-description
   color: "#0A3161"
   image: /Textures/_Mono/Companies/UNSA.png
-  # Forge-change
+  # Forge-change: add icon & special's
   icon: UniversalStatesOfAmerica
   special:
   - !type:GiveItemSpecial
@@ -188,7 +191,7 @@
   name: Civil Defense Militia
   description: civil-defense-milita-description
   color: "#666600"
-  disabled: true
+  whitelisted: true
   hidden: true # Forge-change: hide
 
 - type: company
@@ -198,7 +201,7 @@
   description: ullman-industries-description
   color: "#52326A"
   image: /Textures/_Mono/Companies/ullman_industries.png
-  # Forge-change
+  # Forge-change: add icon & special's
   icon: UllmanIndustries
   special:
   - !type:GiveItemSpecial
@@ -227,7 +230,7 @@
   description: blackhawkpmc-description
   color: "#419E23"
   image: /Textures/_Mono/Companies/BMC.png
-  # Forge-change
+  # Forge-change: add icon & special's
   icon: Blackhawk
   special:
   - !type:GiveItemSpecial
@@ -257,6 +260,7 @@
   name: Улей # Forge-change: locale The Hive
   description: The-Hive-description
   color: "#5918a8"
+  # Forge-change: add icon, note & special's
   icon: TheHive # Forge-change
   special:
   - !type:PlaySpawnSoundSpecial
@@ -273,9 +277,9 @@
   form: Antagonist
   name: Paycheck Bratva
   description: paycheck-bratva-description
-  note: paycheck-bratva-company-note
   color: "#971f47"
-  # Forge-change
+  # Forge-change: add icon, note & special's
+  note: paycheck-bratva-company-note
   icon: Paycheck
   special:
   - !type:GiveItemSpecial
@@ -289,49 +293,30 @@
   description: cerberus-surplus-provisions
   color: "#aa1010"
   image: /Textures/_Mono/Companies/CSP.png
-  disabled: true
+  whitelisted: true
   hidden: true # Forge-change: hide
-  logins:
-    - GoobieWoob
-    - Coolzman
-    - Lumpy_the_Clown
-    - coolfied
-    - Callington
-    - Operator_Talon5
-    - CdrGreenwall
-    - MarssSett18
-    - Administratorx # Hopefully this doesnt get denied because it has adminstrator in it smh
-    - MSMarvin
+  # logins:
+  #   - GoobieWoob
+  #   - Coolzman
+  #   - Lumpy_the_Clown
+  #   - coolfied
+  #   - Callington
+  #   - Operator_Talon5
+  #   - CdrGreenwall
+  #   - MarssSett18
+  #   - Administratorx # Hopefully this doesnt get denied because it has adminstrator in it smh
+  #   - MSMarvin
 
 - type: company
   id: TheViperGroup
   form: Antagonist
   name: Viper Group
   description: viper-group-description
-  note: viper-group-company-note
   color: "#B82121"
   image: /Textures/_Mono/Companies/thevipergroup.png # Example
-  disabled: true
-  logins:
-  - Schizm1253
-  - Androidonator
-  - Archylle
-  - Battieralarm3
-  - bubz_bs
-  - capslfern
-  - DrOktober
-  - Ermac10108
-  - Ghost581
-  - hellcat76
-  - HungryCuban
-  - Scyron
-  - SwadianSupremacy
-  - Traildog
-  - PH77SER
-  - Siege_Of_Malta_Never_Happened
-  - gelliii
-  - Uranio
-  # Forge-change
+  whitelisted: true
+  # Forge-change: delete logins, add icon, note & special's
+  note: viper-group-company-note
   icon: ViperGroup
   special:
   - !type:GiveItemSpecial
@@ -351,27 +336,27 @@
   description: redsail-corsairs-description
   color: "#930000"
   image: /Textures/_Mono/Companies/redsailcorsairs.png
-  disabled: true
+  whitelisted: true
   hidden: true # Forge-change: hide
-  logins: # 20 total
-  - Corrupt
-  - Jasos
-  - Luksu
-  - FervantTwo8
-  - Wawa_pull
-  - Pffy
-  - SouthernSaint
-  - Birdadoido
-  - Abbyssl
-  - MSMarvin
-  - Dusky
-  - Middleagedman
-  - EmmaFaith
-  - soulvapor
-  - Ether
-  - MapleSilk
-  - Spacepeing
-  - zigcraft
-  - burrrkeye
-  - enkidienne
-  - chugaa
+  # logins: # 20 total
+  # - Corrupt
+  # - Jasos
+  # - Luksu
+  # - FervantTwo8
+  # - Wawa_pull
+  # - Pffy
+  # - SouthernSaint
+  # - Birdadoido
+  # - Abbyssl
+  # - MSMarvin
+  # - Dusky
+  # - Middleagedman
+  # - EmmaFaith
+  # - soulvapor
+  # - Ether
+  # - MapleSilk
+  # - Spacepeing
+  # - zigcraft
+  # - burrrkeye
+  # - enkidienne
+  # - chugaa

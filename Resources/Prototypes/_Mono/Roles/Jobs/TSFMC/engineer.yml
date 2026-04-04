@@ -12,6 +12,7 @@
   weight: 130
   displayWeight: 20
   assignedCompany: TSF
+  nationality: TransSolarFederation # Forge-Change
   canBeAntag: false
  # guides: [ BasicLore, TransSolarFederation ] # Forge-Change-delete
   access:

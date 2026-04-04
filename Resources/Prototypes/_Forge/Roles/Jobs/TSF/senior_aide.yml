@@ -17,6 +17,7 @@
   weight: 105
   displayWeight: 50
   assignedCompany: TSF
+  nationality: TransSolarFederation
   accessGroups:
   - TsfGeneralAccess
   special:

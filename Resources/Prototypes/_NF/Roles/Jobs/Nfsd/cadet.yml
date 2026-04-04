@@ -19,6 +19,7 @@
   canBeAntag: false
  # guides: [ BasicLore, TransSolarFederation ] # Forge-Change-delete
   assignedCompany: TSF
+  nationality: TransSolarFederation # Forge-Change
   setPreference: false # mono
   accessGroups:
   - CadetNfsdAccess
