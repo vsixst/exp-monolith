@@ -122,4 +122,4 @@
   parent: CompanyIconBase
   icon:
     sprite: /Textures/Forge/Interface/Misc/company_icons.rsi
-    state: nesux
+    state: nexus
