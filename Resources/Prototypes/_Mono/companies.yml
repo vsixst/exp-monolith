@@ -81,6 +81,7 @@
   note: drake-industries-company-note
   color: "#C97D7D"
   image: /Textures/_Mono/Companies/drake_industries.png
+  icon: Drake # Forge-change
 
 - type: company
   id: SteelHammerManufacturing
@@ -90,6 +91,7 @@
   note: steel-hammer-company-note
   color: "#92a2a1"
   image: /Textures/_Mono/Companies/steel_hammer.png
+  icon: SteelHammerManufacturing # Forge-change
 
 - type: company
   id: HarmonyMedicalEnterprises
@@ -98,6 +100,7 @@
   description: harmony-medical-enterprises-description
   color: "#FC7303"
   image: /Textures/_Mono/Companies/HME.png
+  icon: HarmonyMedicalEnterprises # Forge-change
 
 - type: company
   id: MidnightArmsCo
@@ -106,6 +109,12 @@
   description: midnight-arms-co-description
   color: "#FF2E2E"
   image: /Textures/_Mono/Companies/MACo.png
+  # Forge-change
+  icon: MidnightArmsCo
+  special:
+  - !type:GiveItemSpecial
+    prototype:
+    - EncryptionKeyMidnightArmsCo
 
 - type: company
   id: USSP
@@ -115,8 +124,18 @@
   disabled: false # Mercs are now USSP-pilled.
   description: ussp-description
   note: ussp-company-note
-  spawnSound: !type:SoundPathSpecifier
-    path: "/Audio/Ambience/Antag/headrev_start.ogg"
+  # Forge-change
+  icon: USSP
+  special:
+  - !type:GiveItemSpecial
+    prototype:
+    - EncryptionKeyUssp
+  - !type:PlaySpawnSoundSpecial
+    sound:
+      path: /Audio/Ambience/Antag/headrev_start.ogg
+      params:
+        volume: -5
+        variation: 0.2
 
 # Major companies
 
@@ -127,6 +146,7 @@
   description: dark-matter-enterprises-description
   color: "#BF00B9"
   image: /Textures/_Mono/Companies/dme.png #DME Logo
+  icon: DarkMatterEnterprises # Forge-change
 
 - type: company
   id: AetherionDynamics
@@ -134,6 +154,7 @@
   name: Aetherion Dynamics
   description: aetherion-dynamics-description
   color: "#7E72B2"
+  icon: AetherionDynamics # Forge-change
 
 - type: company
   id: HorizonEnergy
@@ -142,6 +163,7 @@
   description: horizon-energy-description
   color: "#69E37F"
   image: /Textures/_Mono/Companies/horizon_energy.png
+  icon: HorizonEnergy # Forge-change
 
 
 # Minor companies
@@ -153,8 +175,12 @@
   description: universal-states-of-america-description
   color: "#0A3161"
   image: /Textures/_Mono/Companies/UNSA.png
-  disabled: true # Forge-change: hide
-  hidden: true # Forge-change: hide
+  # Forge-change
+  icon: UniversalStatesOfAmerica
+  special:
+  - !type:GiveItemSpecial
+    prototype:
+    - EncryptionKeyUNSA
 
 - type: company
   id: CivilDefenseMilita
@@ -172,8 +198,18 @@
   description: ullman-industries-description
   color: "#52326A"
   image: /Textures/_Mono/Companies/ullman_industries.png
-  spawnSound: !type:SoundPathSpecifier
-    path: "/Audio/Ambience/Antag/pirate_start.ogg"
+  # Forge-change
+  icon: UllmanIndustries
+  special:
+  - !type:GiveItemSpecial
+    prototype:
+    - EncryptionKeyUllmanIndustries
+  - !type:PlaySpawnSoundSpecial
+    sound:
+      path: /Audio/Ambience/Antag/pirate_start.ogg
+      params:
+        volume: -5
+        variation: 0.2
 
 - type: company
   id: NosskeEienResearchandDevelopment
@@ -182,6 +218,7 @@
   description: nosske-eien-rnd-description
   color: "#9573AF"
   image: /Textures/_Mono/Companies/ne_rd.png
+  icon: Nosske # Forge-change
 
 - type: company
   id: blackhawkpmc
@@ -190,6 +227,12 @@
   description: blackhawkpmc-description
   color: "#419E23"
   image: /Textures/_Mono/Companies/BMC.png
+  # Forge-change
+  icon: Blackhawk
+  special:
+  - !type:GiveItemSpecial
+    prototype:
+    - EncryptionKeyBlackhawk
 
 # Religious groups
 
@@ -214,8 +257,14 @@
   name: Улей # Forge-change: locale The Hive
   description: The-Hive-description
   color: "#5918a8"
-  spawnSound: !type:SoundPathSpecifier
-    path: "/Audio/Ambience/ambimystery.ogg"
+  icon: TheHive # Forge-change
+  special:
+  - !type:PlaySpawnSoundSpecial
+    sound:
+      path: /Audio/Ambience/ambimystery.ogg
+      params:
+        volume: -5
+        variation: 0.2
 
 # Black Market Companies
 
@@ -226,11 +275,12 @@
   description: paycheck-bratva-description
   note: paycheck-bratva-company-note
   color: "#971f47"
-  spawnSound: !type:SoundPathSpecifier
-    path: "/Audio/Ambience/Antag/pirate_start.ogg"
-  special: # Forge-change
+  # Forge-change
+  icon: Paycheck
+  special:
   - !type:GiveItemSpecial
-    prototype: EncryptionKeyPaycheckBratva
+    prototype:
+    - EncryptionKeyPaycheckBratva
 
 - type: company
   id: CerberusSurplusProvisions
@@ -262,8 +312,6 @@
   color: "#B82121"
   image: /Textures/_Mono/Companies/thevipergroup.png # Example
   disabled: true
-  spawnSound: !type:SoundPathSpecifier
-    path: "/Audio/_Forge/Ambience/Antag/cut_reaper_spawn.ogg"
   logins:
   - Schizm1253
   - Androidonator
@@ -283,9 +331,18 @@
   - Siege_Of_Malta_Never_Happened
   - gelliii
   - Uranio
-  special: # Forge-change
+  # Forge-change
+  icon: ViperGroup
+  special:
   - !type:GiveItemSpecial
-    prototype: EncryptionKeyViperGroup
+    prototype:
+    - EncryptionKeyViperGroup
+  - !type:PlaySpawnSoundSpecial
+    sound:
+      path: /Audio/_Forge/Ambience/Antag/cut_reaper_spawn.ogg
+      params:
+        volume: -5
+        variation: 0.2
 
 - type: company
   id: RedSailCorsairs

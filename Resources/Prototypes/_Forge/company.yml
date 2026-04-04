@@ -17,13 +17,17 @@
   description: company-techniclogistic-description
   note: techniclogistic-company-note
   color: "#83489d"
-  entityIcon: BannerTL
+  icon: TL
   disabled: true
   logins:
     - Eifall
     - IMERATOR
     - mersen
     - v6st
+  special: # Forge-change
+  - !type:GiveItemSpecial
+    prototype:
+    - EncryptionKeyTechnicLogistic
 
 - type: company
   id: Nexus
@@ -32,6 +36,7 @@
   description: company-nexus-description
   color: "#0f3b62"
   entityIcon: BannerNSC
+  icon: Nexus
 
 - type: company
   id: Renegates

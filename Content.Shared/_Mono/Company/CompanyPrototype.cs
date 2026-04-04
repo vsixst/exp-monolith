@@ -1,6 +1,7 @@
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio; // Forge-change
 using Content.Shared.Roles; // Forge-change
+using Content.Shared.StatusIcon; // Forge-change
 
 namespace Content.Shared._Mono.Company;
 
@@ -63,12 +64,6 @@ public sealed partial class CompanyPrototype : IPrototype
     public string? Image { get; private set; }
 
     // Forge-change-start
-    [DataField("entityIcon", required: false)]
-    public EntProtoId? EntityIcon { get; private set; }
-
-    [DataField("spawnSound")]
-    public SoundSpecifier? SpawnSound;
-
     [DataField("special", serverOnly: true)]
     public JobSpecial[] Special { get; private set; } = Array.Empty<JobSpecial>();
 
@@ -81,5 +76,11 @@ public sealed partial class CompanyPrototype : IPrototype
     /// </summary>
     [DataField("note", required: false)]
     public string Note { get; private set; } = string.Empty;
+
+    /// <summary>
+    /// The icon prototype to display for this company in ShowJobIcon
+    /// </summary>
+    [DataField("icon")]
+    public ProtoId<CompanyIconPrototype>? Icon { get; private set; }
     // Forge-change-end
 }

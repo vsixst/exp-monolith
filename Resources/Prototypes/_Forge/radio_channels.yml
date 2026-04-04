@@ -54,14 +54,13 @@
   frequency: 1356
   color: "#009e79"
 
-# Company channel
+# region Company
 - type: radioChannel
   id: ViperGroup
   name: chat-radio-vipergroup
   keycode: 'v'
   frequency: 7001
   color: "#B82121"
-  longRange: true
 
 - type: radioChannel
   id: PaycheckBratva
@@ -69,4 +68,38 @@
   keycode: 'b'
   frequency: 7002
   color: "#971f47"
-  longRange: true
+
+- type: radioChannel
+  id: Blackhawk
+  name: chat-radio-blackhawk
+  keycode: 'x'
+  frequency: 7003
+  color: "#419E23"
+
+- type: radioChannel
+  id: MAC
+  name: chat-radio-mac
+  keycode: 'k'
+  frequency: 7004
+  color: "#419E23"
+
+- type: radioChannel
+  id: Ullman
+  name: chat-radio-ullman
+  keycode: 'w'
+  frequency: 7005
+  color: "#52326A"
+
+- type: radioChannel
+  id: UNSA
+  name: chat-radio-unsa
+  keycode: 'щ'
+  frequency: 7007
+  color: "#0A3161"
+
+- type: radioChannel
+  id: TL
+  name: chat-radio-tl
+  keycode: 'q'
+  frequency: 7008
+  color: "#83489d"
