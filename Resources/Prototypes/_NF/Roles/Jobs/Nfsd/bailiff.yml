@@ -20,8 +20,7 @@
   displayWeight: 60
   hideConsoleVisibility: true #Forge-Change
  # guides: [ BasicLore, TransSolarFederation ] # Forge-Change-delete
-  assignedCompany: TSF
-  nationality: TransSolarFederation # Forge-Change
+  assignedCompany: TSF # Forge-Change
   canBeAntag: false
   access:
   - Armory

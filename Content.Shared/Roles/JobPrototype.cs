@@ -87,12 +87,6 @@ namespace Content.Shared.Roles
         public ProtoId<CompanyPrototype> AssignedCompany { get; private set; } = "None";
 
         /// <summary>
-        /// Forge-change - Assigns nationality to the player on spawn.
-        /// </summary>
-        [DataField]
-        public ProtoId<NationalityPrototype> Nationality { get; private set; }
-
-        /// <summary>
         ///     Should the selected traits be applied for this job?
         /// </summary>
         [DataField]

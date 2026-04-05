@@ -69,6 +69,43 @@ public class SharedPassportSystem : EntitySystem
             46);
     }
 
+    // TODO: I will change this system. Tomorrow. (If you're reading this, tomorrow hasn't come yet.)
+    // Forge-change-start: i know, that shit. But, in my defense - im using _Mono/Company code as a reference.
+    // private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent ev) =>
+    //     SpawnPassportForPlayer(ev.Mob, ev.Profile, ev.JobId);
+//    private readonly HashSet<string> _imperialJobs = new() // Forge-change-delete
+//    {
+//        "Praefect",
+//        "Arbiter",
+//        "Cardinal",
+//        "Inquisitor",
+//        "Consul",
+//        "Praetorian",
+//        "Auxilia",
+//        "Neophyte",
+//    };
+
+    private readonly HashSet<string> _tsfJobs = new()
+    {
+        "Sheriff",
+        "Bailiff",
+        "SeniorOfficer", // Sergeant
+        "Deputy",
+        "Brigmedic",
+        "NFDetective",
+        "PublicAffairsLiaison",
+        "Cadet",
+        "TsfEngineer",
+        "TsfBorg",
+        "TsfCommandingOfficer",
+        "TsfExecutiveOfficer",
+        "TsfSeniorOfficer",
+        "TsfSeniorAide",
+        "TsfAmbassador",
+        "TsfRanger",
+        "TsfRecruit",
+        "TsfEngineer",
+    };
     private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent ev)
     {
         if (!ShouldSpawnPassports)
@@ -76,11 +113,15 @@ public class SharedPassportSystem : EntitySystem
 
         var profile = ev.Profile;
 
-        if (ev.JobId != null && _prototypeManager.TryIndex(ev.JobId, out JobPrototype? jobPrototype))
+        if (ev.JobId != null)
         {
-            if (!string.IsNullOrEmpty(jobPrototype.Nationality))
+//            if (_imperialJobs.Contains(ev.JobId))
+//            {
+//                profile.Nationality = "Imperial";
+//            }
+            if (_tsfJobs.Contains(ev.JobId))
             {
-                profile = profile.WithNationality(jobPrototype.Nationality);
+                profile.Nationality = "TransSolarFederation";
             }
         }
         SpawnPassportForPlayer(ev.Mob, profile, ev.JobId);
@@ -106,6 +147,21 @@ public class SharedPassportSystem : EntitySystem
         var passportComponent = _entityManager.GetComponent<PassportComponent>(passportEntity);
 
         UpdatePassportProfile(new(passportEntity, passportComponent), profile);
+
+        bool passportStored = false;
+
+        // Try to find wallet
+        if (_inventory.TryGetSlotEntity(mob, "wallet", out var wallet) &&
+            EntityManager.TryGetComponent<StorageComponent>(wallet, out var walletStorage))
+        // Try inserting the entity into the wallet
+        {
+            if (EntityManager.TryGetComponent<ItemComponent>(passportEntity, out var itemComp) &&
+                _storage.CanInsert(wallet.Value, passportEntity, out _, walletStorage, itemComp) &&
+                _storage.Insert(wallet.Value, passportEntity, out _, playSound: false))
+            {
+                passportStored = true;
+            }
+        }
 
         // Try to find back-mounted storage apparatus
         if (_inventory.TryGetSlotEntity(mob, "back", out var item) &&

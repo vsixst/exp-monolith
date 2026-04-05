@@ -20,6 +20,15 @@
             "name": "crypt_silver"
         },
         {
+            "name": "crypt_black"
+        },
+        {
+            "name": "crypt_rusted"
+        },
+        {
+            "name": "crypt_blue"
+        },
+        {
             "name": "crypt_renegade"
         },
         {
@@ -66,6 +75,15 @@
         },
         {
             "name": "mac_label"
+        },
+        {
+            "name": "paycheck_label"
+        },
+        {
+            "name": "ussp_label"
+        },
+        {
+            "name": "nt_label"
         }
     ]
 }

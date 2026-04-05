@@ -15,7 +15,7 @@
   color: "#83489d"
   icon: TL
   whitelisted: true
-  special: # Forge-change
+  special:
   - !type:GiveItemSpecial
     prototype:
     - EncryptionKeyTechnicLogistic
@@ -26,7 +26,6 @@
   name: Nexus Star Consortium
   description: company-nexus-description
   color: "#0f3b62"
-  entityIcon: BannerNSC
   icon: Nexus
 
 - type: company

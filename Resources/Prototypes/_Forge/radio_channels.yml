@@ -81,7 +81,7 @@
   name: chat-radio-mac
   keycode: 'э'
   frequency: 7004
-  color: "#419E23"
+  color: "#FF2E2E"
 
 - type: radioChannel
   id: Ullman

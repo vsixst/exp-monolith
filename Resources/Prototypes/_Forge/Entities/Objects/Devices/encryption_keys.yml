@@ -204,7 +204,7 @@
   - type: Sprite
     sprite: Forge/Objects/Devices/encryption_keys.rsi
     layers:
-    - state: crypt_red
+    - state: crypt_red_alt
     - state: viper_label
 
 - type: entity
@@ -224,8 +224,8 @@
   - type: Sprite
     sprite: Forge/Objects/Devices/encryption_keys.rsi
     layers:
-    - state: crypt_red_alt
-    - state: synd_label_alt
+    - state: crypt_black
+    - state: paycheck_label
 
 - type: entity
   parent: EncryptionKey
@@ -244,7 +244,7 @@
   - type: Sprite
     sprite: Forge/Objects/Devices/encryption_keys.rsi
     layers:
-    - state: crypt_merc
+    - state: crypt_black
     - state: mac_label
 
 - type: entity
@@ -284,7 +284,7 @@
   - type: Sprite
     sprite: Forge/Objects/Devices/encryption_keys.rsi
     layers:
-    - state: crypt_merc
+    - state: crypt_black
     - state: ullman_label
 
 - type: entity
