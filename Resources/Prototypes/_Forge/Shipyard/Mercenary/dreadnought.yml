@@ -11,7 +11,7 @@
   parent: BaseVessel
   name: PMSC-A Дредноут
   description: Ударный шаттл предназначенный для боя, имеет хорошую лицевую броню, но при этом уязвим сзади. Основное вооружение 2 хейдеса и 2 цирексы
-  price: 270000
+  price: 220000
   category: Medium
   group: Shipyard
   access: Mercenary
@@ -22,7 +22,7 @@
 
 - type: gameMap
   id: dreadnought
-  mapName: 'PMSC-A Дредноут'
+  mapName: 'Дредноут'
   mapPath: /Maps/_Forge/Shuttles/Mercenary/dreadnought.yml
   minPlayers: 0
   stations:
@@ -30,7 +30,7 @@
       stationProto: StandardFrontierVessel
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'PMSC-A Дредноут{1}'
+          mapNameTemplate: 'Дредноут MIL{1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'

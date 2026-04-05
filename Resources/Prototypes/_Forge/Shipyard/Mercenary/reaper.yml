@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: -
+# Discord: dryaken
+
+# Maintainer Info
+# GitHub: vsixst
+# Discord: v6st
+
+- type: vessel
+  id: pmscReaper
+  parent: BaseVessel
+  name: PMSC-A Жнец
+  description: Боевой ударный шаттл, имеющщий по стандратам PMSC-A хорошую лицевую броню, но уязвимую заднюю часть. Основное вооружение 2 Хейдес'а, 3 Фанг'а и 2 L85.
+  price: 275000
+  category: Medium
+  group: Shipyard
+  access: Mercenary
+  shuttlePath: /Maps/_Forge/Shuttles/Mercenary/reaper.yml
+  guidebookPage: Null
+  class:
+  - Fighter
+
+- type: gameMap
+  id: pmscReaper
+  mapName: 'Жнец'
+  mapPath: /Maps/_Forge/Shuttles/Mercenary/reaper.yml
+  minPlayers: 0
+  stations:
+    pmscReaper:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Жнец MIL{1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]

@@ -1,0 +1,41 @@
+# Author Info
+# GitHub: -
+# Discord: dryaken
+
+# Maintainer Info
+# GitHub: vsixst
+# Discord: v6st
+
+- type: vessel
+  id: pmscViking
+  parent: BaseVessel
+  name: PMSC-A Викинг
+  description: Ударный шаттл производства PMSC-A, имеющий по стандратам компании крепкую лицевую броню, но уязвимую заднюю часть.
+  price: 165500
+  category: Medium
+  group: Shipyard
+  access: Mercenary
+  shuttlePath: /Maps/_Forge/Shuttles/Mercenary/viking.yml
+  guidebookPage: Null
+  class:
+  - Fighter
+
+- type: gameMap
+  id: pmscViking
+  mapName: 'Викинг'
+  mapPath: /Maps/_Forge/Shuttles/Mercenary/viking.yml
+  minPlayers: 0
+  stations:
+    pmscViking:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Викинг MIL{1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs:
+            Contractor: [ 0, 0 ]
+            Pilot: [ 0, 0 ]
+            Mercenary: [ 0, 0 ]
