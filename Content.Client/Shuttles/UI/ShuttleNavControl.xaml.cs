@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Client._Mono.Radar;
 using Content.Client.Station; // Frontier
 using Content.Shared._Crescent.ShipShields;
+using Content.Shared._Forge.LetoferolAnnihilator; // Forge-Change
 using Content.Shared._Mono.Company;
 using Content.Shared._Mono.Detection;
 using Content.Shared._Mono.Radar;
@@ -332,6 +333,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
 
         // Draw shields
         DrawShields(handle, xform, worldToShuttle);
+        DrawZones(handle, worldToView, xform.MapID); // Forge-Change
 
         // Frontier Corvax: north line drawing
         var rot = ourEntRot + _rotation.Value;
@@ -677,6 +679,37 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
         }
         #endregion
     }
+
+    #region Forge-Change
+    private void DrawZones(DrawingHandleScreen handle, Matrix3x2 worldToView, MapId currentMapId)
+    {
+        var zoneQuery = EntManager.EntityQueryEnumerator<AnnihilatorZoneVisualsComponent, TransformComponent>();
+        while (zoneQuery.MoveNext(out var zoneUid, out var zoneComp, out var xform))
+        {
+            if (xform.MapID != currentMapId)
+                continue;
+
+            var worldCenter = _transform.GetWorldPosition(xform);
+            var viewCenter = Vector2.Transform(worldCenter, worldToView);
+
+            var worldEdge = worldCenter + new Vector2(zoneComp.Radius, 0);
+            var viewEdge = Vector2.Transform(worldEdge, worldToView);
+            float viewRadius = (viewEdge - viewCenter).Length();
+
+            const int segments = 64;
+            var vertices = new Vector2[segments + 1];
+            for (int i = 0; i <= segments; i++)
+            {
+                float angle = i * MathF.Tau / segments;
+                vertices[i] = viewCenter + new Vector2(MathF.Cos(angle), MathF.Sin(angle)) * viewRadius;
+            }
+
+            Color zoneColor = zoneComp.ZoneColor.WithAlpha(0.3f);
+            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, vertices, zoneColor);
+            handle.DrawPrimitives(DrawPrimitiveTopology.LineStrip, vertices, zoneComp.ZoneColor);
+        }
+    }
+    #endregion Forge-Change
 
     protected DetectionLevel GetGridDetected(EntityUid grid)
     {

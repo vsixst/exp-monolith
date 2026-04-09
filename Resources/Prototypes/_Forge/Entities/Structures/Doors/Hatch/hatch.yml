@@ -1,14 +1,4 @@
-- type: entity
-  parent: AirlockHatch
-  id: AirlockHatchRenegades
-  suffix: Ренегаты, Locked
-  components:
-  - type: Sprite
-    sprite: Forge/Structures/Doors/Hatch/ren_hatch.rsi
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsRenegate ]
-
+# Empire
 - type: entity
   parent: AirlockHatch
   id: AirlockHatchEmpireOfficer
@@ -44,3 +34,25 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsEmpire ]
+
+# Renegade
+- type: entity
+  parent: AirlockHatch
+  id: AirlockHatchRenegades
+  suffix: Ренегаты, Locked
+  components:
+  - type: Sprite
+    sprite: Forge/Structures/Doors/Hatch/ren_hatch.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRenegate ]
+
+# Remnant
+- type: entity
+  parent: AirlockHatch
+  id: AirlockHatchRemnant
+  suffix: Forge, Remnant
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRemnant ]

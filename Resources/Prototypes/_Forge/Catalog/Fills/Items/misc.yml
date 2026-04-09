@@ -1,0 +1,11 @@
+- type: entity
+  id: SyringeCaseNaniteFilled
+  parent: SyringeCaseAlt
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: CombatMedipen
+      amount: 4
+    - id: CombatNaniteMedipen
+      amount: 4

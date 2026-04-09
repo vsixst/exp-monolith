@@ -1,0 +1,103 @@
+- type: entity
+  name: asakim warrior spawner
+  id: SpawnMobAsakimWarrior
+  suffix: Forge
+  parent: MarkerBase
+  components:
+  - type: ConditionalSpawner
+    prototypes:
+    - MobAsakimWarrior
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: _Mono/Mobs/Species/Asakim/parts.rsi
+      state: full
+
+- type: entity
+  parent: MobAsakim
+  id: MobAsakimWarrior
+  name: asakim warrior
+  suffix: Asakim
+  components:
+  - type: HumanoidAppearance
+    height: 1.2
+    width: 1.2
+  - type: Loadout
+    prototypes: [AsakimWarriorGear]
+  - type: GhostRole
+    name: ghost-role-information-asakim-name
+    description: ghost-role-information-asakim-description
+    rules: ghost-role-information-asakim-rules
+    raffle:
+      settings: default
+    requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 180000
+  - type: GhostTakeoverAvailable
+  - type: RandomMetadata
+    nameSegments:
+    - "Юнит"
+    - SyndicateNamesNormal
+  - type: NpcFactionMember
+    factions:
+    - SiliconsExpeditionNF
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      125: Critical
+      200: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      80: 0.8
+      100: 0.5
+  - type: Stamina
+    critThreshold: 250
+  - type: SurgerySpeedModifier
+    speedModifier: 1.2
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Remnants
+  - type: ActiveRadio
+    channels:
+    - Remnants
+  - type: AutoImplant
+    implants:
+    - FreedomImplant
+  - type: Access
+    tags:
+    - Remnant
+    - Mercenary
+  - type: LanguageKnowledge
+    speaks:
+    - Azaziba
+    - Draconic
+    understands:
+    - Draconic
+    - Azaziba
+    - RobotTalk
+    - DroneTalk
+    - Sign
+
+- type: startingGear
+  id: AsakimWarriorGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNinja
+    back: ClothingBackpackSatchelAsakim
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitAsakimUnremoveable
+    shoes: ClothingShoesBootsMagAsakimForge
+    pocket1: SyringeCaseNaniteFilled
+    pocket2: DoubleEmergencyOxygenTankFilled
+    belt: WeaponPhaseBlade
+    suitstorage: WeaponRifleAsakimAutopulser
+  storage:
+    back:
+    - DoubleEmergencyOxygenTankFilled
+    - HandHeldMassScannerBorg
+    - PowerDrill
+    - JawsOfLife
+    - WelderExperimental
+    - ShipRepairDeviceRedacted
+    - InfectionScannerAsakim

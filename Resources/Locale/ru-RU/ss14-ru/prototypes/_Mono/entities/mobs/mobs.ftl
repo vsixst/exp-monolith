@@ -1,22 +1,24 @@
-ent-MobLetoferolHorrorGhostrole = Ghostrole
-    .desc = ghost-role-information-chimera-description
-ent-MobLetoferolBeast = chimera fleshbeast
+ent-MobLetoferolHorrorGhostrole = химера
     .desc = { ent-MonoBaseMobLetoferol.desc }
-ent-MonoBaseMobLetoferolHumanoid = chimera fleshbeast
-    .desc = A once sentient being covered in putrid flesh and bone. You can see a glimpse of humanity left in its eyes, like whoever it was is still awake.
-ent-LetoferolHorrorSpike = letoferol bone spike
+ent-MobLetoferolBeast = химера
+    .desc = { ent-MonoBaseMobLetoferol.desc }
+ent-MonoBaseMobLetoferolHumanoid = химера
+    .desc = Некогда разумное существо, покрытое гниющей плотью и костями. В его глазах можно увидеть проблеск человечности, как будто, кем бы оно ни было, оно все еще бодрствует.
+ent-LetoferolHorrorSpike = шип летоферола
     .desc = { ent-LetoferolSpikeGun.desc }
-ent-ActionLetoferolSpike = [color=yellow]Bone Spike[/color]
-    .desc = Shoot a short salvo of bone spikes laced with [color=yellow]letoferol[/color].
-ent-NpcStationAiApproacher = approacher core
-    .desc = Stands there, menacingly.
-ent-NpcStationAiAttacker = attacker core
-    .desc = Shoots at you.
-ent-NpcStationAiShooter = shooter core
-    .desc = Shoots at you. Doesn't move.
-ent-NpcStationAiAttackerSmart = AI, Smart
-    .desc = Shoots at you. Smart.
-ent-NpcStationAiAttackerStaticSmart = AI, Smart, Static
-    .desc = Shoots at you. Smart.
-ent-NpcStationAiAttackerBroadside = AI, Broadside
-    .desc = Shoots at you. Broadside.
+ent-ActionLetoferolSpike = [color=yellow]костянной шип[/color]
+    .desc = Стреляйте коротким залпом из костяных шипов, пронизанных [color=yellow]летоферолом[/color].
+
+ent-NpcStationAiApproacher = ИИ модуль
+    .desc = Стоит там с угрожающим видом.
+ent-NpcStationAiAttacker = ИИ модуль
+    .desc = Стреляет в тебя.
+
+ent-NpcStationAiShooter = { ent-NpcStationAiAttacker }
+    .desc = { ent-NpcStationAiAttacker.desc }
+ent-NpcStationAiAttackerSmart = { ent-NpcStationAiAttacker }
+    .desc = { ent-NpcStationAiAttacker.desc }
+ent-NpcStationAiAttackerStaticSmart = { ent-NpcStationAiAttacker }
+    .desc = { ent-NpcStationAiAttacker.desc }
+ent-NpcStationAiAttackerBroadside = { ent-NpcStationAiAttacker }
+    .desc = { ent-NpcStationAiAttacker.desc }

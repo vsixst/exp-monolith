@@ -1,7 +1,7 @@
 - type: radioChannel
   id: Ussp
   name: chat-radio-ussp
-  keycode: 'з'
+  keycode: 'ь' # Forge-Change
   frequency: 1723
   color: "#b2224b"
   longRange: true
@@ -17,20 +17,20 @@
 - type: radioChannel
   id: Letoferol
   name: chat-radio-letoferol
-  keycode: 'д'
+  keycode: 'ш' # Forge-Change
   color: "#fcba03"
   longRange: true
 
 - type: radioChannel
   id: CorticalBorer
   name: chat-radio-cortical-borer
-  keycode: 'ш'
+  keycode: 'щ' # Forge-Change
   color: "#d842fc"
   longRange: true
 
 - type: radioChannel
   id: Remnants
   name: chat-radio-remnants
-  keycode: 'о'
+  keycode: 'й' # Forge-Change
   color: "#21b0a4"
   longRange: true

@@ -1,12 +1,12 @@
 ent-WeaponHFKatana = высокочастотный клинок
     .desc = Высокочастотный клинок. Невероятно мощный.
-ent-WeaponVT7 = VT-7 high-frequency blade
+ent-WeaponVT7 = VT-7 высокочастотный клинок
     .desc = Высокочастотный клинок с сомнительными доработками для разрушения брони.
-ent-WeaponMurasama = VT-7 HF blade "Murasama"
+ent-WeaponMurasama = VT-7 HF меч "Мурамаса"
     .desc = Ты здесь главный.
-ent-WeaponPhaseBlade = nano-laminate phaseblade
+ent-WeaponPhaseBlade = нано-ламинатный фазовый клинок
     .desc = Тяжёлое клинковое оружие с злобным лезвием, часто в руках доколлапсных воинов. Можно активировать под бой.
-ent-UllmanPlasmaBlade = U.I. unstable plasma blade
+ent-UllmanPlasmaBlade = U.I. нестабильный плазменный меч
     .desc = Уникальное оружие: горючее для сварки как катализатор воспламенения. Нестабильная плазма даёт мощное пламя и временно повышает урон.
-ent-WeaponVizierShamshir = officer's shamshir
+ent-WeaponVizierShamshir = офицерский шамшир
     .desc = Изогнутый клинок в старом стиле из бледного пластитана. Готов рубить и резать.

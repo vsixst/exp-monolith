@@ -1,0 +1,21 @@
+- type: entityTable
+  id: ForgeAsakimShipsTable
+  table: !type:AllSelector
+    children:
+      #- id: ForgeUnknownShuttleAsakimSmall
+      - id: ForgeUnknownShuttleAsakimMedium
+
+- type: entity
+  parent: BaseRandomShuttleRule
+  id: ForgeUnknownShuttleAsakimMedium
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-asakim-shuttle-detected
+    startAudio:
+      path: /Audio/Misc/notice1.ogg
+    weight: 2
+    maxOccurrences: 3
+  - type: GameRule
+    minPlayers: 40
+  - type: LoadMapRule
+    gridPath: /Maps/_Forge/Events/Periodic/Remnants/asakim_medium.yml

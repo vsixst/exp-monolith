@@ -1,0 +1,74 @@
+- type: reagent
+  id: CombatNanites
+  name: reagent-name-combat-nanites
+  group: Medicine
+  desc: reagent-desc-combat-nanites
+  physicalDesc: reagent-physical-desc-neural
+  recognizable: true
+  flavor: medicine
+  color: "#707070"
+  metabolisms:
+    Medicine:
+      metabolismRate: 1
+      effects:
+        - !type:HealthChange
+          conditions:
+          - !type:MobStateCondition
+            mobstate: Alive
+          - !type:ReagentThreshold
+            max: 5.99
+          damage:
+            types:
+              Blunt: -20
+              Slash: -20
+              Piercing: -20
+              Poison: -20
+              Heat: -20
+              Shock: -20
+              Cold: -20
+              Caustic: -20
+              Radiation: -20
+              Asphyxiation: -30
+              Bloodloss: -30
+              Cellular: -20
+        - !type:ModifyBleedAmount
+          conditions:
+          - !type:MobStateCondition
+            mobstate: Alive
+          - !type:ReagentThreshold
+            max: 6
+          amount: -3
+        - !type:HealthChange
+          conditions:
+          - !type:ReagentThreshold
+            min: 6
+          damage:
+            types:
+              Cellular: 50
+        - !type:HealthChange
+          conditions:
+          - !type:MobStateCondition
+            mobstate: Critical
+          - !type:ReagentThreshold
+            max: 5.99
+          damage:
+            types:
+              Blunt: -50
+              Slash: -50
+              Piercing: -50
+              Poison: -50
+              Heat: -50
+              Shock: -50
+              Cold: -50
+              Caustic: -50
+              Asphyxiation: -60
+              Bloodloss: -60
+        - !type:SatiateHunger
+            factor: 12
+        - !type:SatiateThirst
+          factor: 12
+        - !type:ModifyBloodLevel
+          conditions:
+          - !type:MobStateCondition
+            mobstate: Alive
+          amount: 12

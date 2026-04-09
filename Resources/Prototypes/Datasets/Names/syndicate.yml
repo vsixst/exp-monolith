@@ -2,7 +2,7 @@
   id: SyndicateNamesNormal
   values:
     prefix: names-syndicate-normal-dataset-
-    count: 25
+    count: 26 # Forge-Change : The letter Y is missing
 
 - type: localizedDataset
   id: SyndicateNamesElite

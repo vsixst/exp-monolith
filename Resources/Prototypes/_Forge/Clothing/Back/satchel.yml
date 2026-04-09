@@ -14,7 +14,6 @@
     - 3,0,6,4
     - 8,0,9,4
 
-
 - type: entity
   parent: [ClothingBackpackSatchel, BaseC3Contraband, ContrabandClothing]
   id: ClothingBackpackSatchelSyndicateMed
@@ -58,3 +57,19 @@
     sprite: Forge/Clothing/Back/Satchels/renegade.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.9
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelAsakim
+  name: сумка
+  description: Приятная на ощупь сумка.
+  components:
+  - type: Sprite
+    sprite: Forge/Clothing/Back/Satchels/asakim.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0
+  - type: Storage
+    grid:
+    - 0,0,1,4
+    - 3,0,6,4
+    - 8,0,9,4

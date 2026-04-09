@@ -1,5 +1,4 @@
-# Empire docking: PriorityDock tag DockEmpire — used when purchasing Empire vessels (ShipyardSystem FTL dock priority).
-
+# Empire
 - type: entity
   parent: AirlockShuttleSyndicate
   id: AirlockShuttleEmpire
@@ -17,3 +16,40 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsEmpire ]
+
+# Remnant
+- type: entity
+  parent: AirlockShuttleSyndicate
+  id: AirlockShuttleRemnant
+  suffix: Remnant, Docking
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRemnant ]
+
+- type: entity
+  parent: AirlockGlassShuttleSyndicate
+  id: AirlockGlassShuttleRemnant
+  suffix: Remnant, Glass, Docking
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRemnant ]
+
+- type: entity
+  parent: AirlockExternal
+  id: AirlockExternalLockedRemnant
+  suffix: Remnant, External, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRemnant ]
+
+- type: entity
+  parent: AirlockExternalGlass
+  id: AirlockExternalGlassLockedRemnant
+  suffix: Remnant, External, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRemnant ]

@@ -25,7 +25,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.48
+          radius: 0.45 # Forge-Change
         density: 275 # Its an abandoned bioweapon species with 4 arms, of course it should be able to fight a Oni.
         restitution: 0.0
         mask:

@@ -1,25 +1,4 @@
-- type: entity
-  parent: Airlock
-  id: AirlockRenegade
-  suffix: Ренегаты, Locked
-  components:
-  - type: Sprite
-    sprite: Forge/Structures/Doors/Standard/ren_door.rsi
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsRenegate ]
-
-- type: entity
-  parent: Airlock
-  id: AirlockRenegadeCom
-  suffix: Ренегаты, Командование, Locked
-  components:
-  - type: Sprite
-    sprite: Forge/Structures/Doors/Standard/ren_command.rsi
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsRenegateOfficer ]
-
+# Empire
 - type: entity
   parent: Airlock
   id: AirlockEmpirePublic
@@ -82,3 +61,26 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsEmpireDiplomacy ]
+
+# Renegade
+- type: entity
+  parent: Airlock
+  id: AirlockRenegade
+  suffix: Ренегаты, Locked
+  components:
+  - type: Sprite
+    sprite: Forge/Structures/Doors/Standard/ren_door.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRenegate ]
+
+- type: entity
+  parent: Airlock
+  id: AirlockRenegadeCom
+  suffix: Ренегаты, Командование, Locked
+  components:
+  - type: Sprite
+    sprite: Forge/Structures/Doors/Standard/ren_command.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRenegateOfficer ]

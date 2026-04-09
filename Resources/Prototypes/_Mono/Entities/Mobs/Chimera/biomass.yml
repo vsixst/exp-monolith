@@ -80,3 +80,7 @@
     - Chimera
     - ChimeraFloor
     - Meat
+  # Forge-Change
+  - type: NpcFactionMember
+    factions:
+    - Chimera

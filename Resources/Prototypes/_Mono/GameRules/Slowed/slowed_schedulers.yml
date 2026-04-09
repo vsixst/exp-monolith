@@ -28,7 +28,7 @@
   components:
   - type: BasicStationEventScheduler
     scheduledGameRules: !type:NestedSelector
-      tableId: AsakimShipsTable
+      tableId: ForgeAsakimShipsTable # Forge-Change : New shuttles for Asakims
     minimumTimeUntilFirstEvent: 10800 # Forge: 3h before first spawn
     minMaxEventTiming:
       min: 5400 # 90 minutes between events

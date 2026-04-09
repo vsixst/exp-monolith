@@ -1,3 +1,4 @@
+# Empire
 - type: entity
   parent: DoorElectronics
   id: DoorElectronicsEmpire
@@ -38,6 +39,7 @@
   - type: AccessReader
     access: [["EmpireDiplomacy"]]
 
+# Renegade
 - type: entity
   parent: DoorElectronics
   id: DoorElectronicsRenegate
@@ -53,3 +55,12 @@
   components:
   - type: AccessReader
     access: [["RenegateOfficer"]]
+
+# Remnant
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsRemnant
+  suffix: Empire Secure, Locked
+  components:
+  - type: AccessReader
+    access: [["Remnant"]]

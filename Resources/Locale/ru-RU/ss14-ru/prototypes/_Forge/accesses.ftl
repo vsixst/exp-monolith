@@ -4,3 +4,5 @@ id-card-access-level-empire-inqusitor = Эклезиарх
 id-card-access-level-empire-commander = Лорд-Префект
 id-card-access-level-empire-diplomacy = Консул Империи
 id-card-access-level-tsf-diplomacy = Дипломатия Федерации
+
+id-card-access-level-basic-remnant = Предтеч

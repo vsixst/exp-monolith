@@ -5,67 +5,67 @@
   frequency: 1459
   color: "#2cdb2c"
 
-- type: radioChannel
-  id: CentCom
-  name: chat-radio-centcom
-  keycode: 'н'
-  frequency: 1337
-  color: "#2681a5"
-  longRange: true
+# - type: radioChannel
+#   id: CentCom
+#   name: chat-radio-centcom
+#   keycode: 'ц' # Forge-Change
+#   frequency: 1337
+#   color: "#2681a5"
+#   longRange: true
 
 - type: radioChannel
   id: Command
   name: chat-radio-command
-  keycode: 'с'
+  keycode: 'к' # Forge-Change
   frequency: 1353
   color: "#5569ff" # Mono
 
 - type: radioChannel
   id: Engineering
   name: chat-radio-engineering
-  keycode: 'у'
+  keycode: 'и' # Forge-Change
   frequency: 1357
   color: "#ff733c"
 
 - type: radioChannel
   id: Medical
   name: chat-radio-medical
-  keycode: 'ь'
+  keycode: 'м' # Forge-Change
   frequency: 1355
   color: "#57b8f0"
 
 - type: radioChannel
   id: Science
   name: chat-radio-science
-  keycode: 'т'
+  keycode: 'н' # Forge-Change
   frequency: 1351
   color: "#cd7ccd"
 
 - type: radioChannel
   id: Security
   name: chat-radio-security
-  keycode: 'п'
+  keycode: 'о' # Forge-Change
   frequency: 1359
   color: "#ff4242"
 
 - type: radioChannel
   id: Service
   name: chat-radio-service
-  keycode: 'м'
+  keycode: 'с' # Forge-Change
   frequency: 1349
   color: "#334e6d" # Forge-change
 
 - type: radioChannel
   id: Supply
   name: chat-radio-supply
-  keycode: 'г'
+  keycode: 'г' # Forge-Change
   frequency: 1347
   color: "#b48b57"
 
 - type: radioChannel
   id: Syndicate
   name: chat-radio-syndicate
-  keycode: 'ц'
+  keycode: 'т' # Forge-Change
   frequency: 1213
   color: "#8f4a4b"
 #  longRange: true # Frontier - Move to Syndicate Base
@@ -94,7 +94,7 @@
 - type: radioChannel
   id: Freelance
   name: chat-radio-freelance
-  keycode: 'а'
+  keycode: 'k' # Forge-Change
   frequency: 1984
   color: "#f6ce64"
   # long range since otherwise it'd defeat the point of a handheld radio independent of telecomms
@@ -103,7 +103,7 @@
 - type: radioChannel
   id: VanguardCommand
   name: chat-radio-vanguard-command
-  keycode: 'к'
+  keycode: 'r' # Forge-Change
   frequency: 1985
   color: "#BF94E4"
   # long range since otherwise it'd defeat the point of a handheld radio independent of telecomms

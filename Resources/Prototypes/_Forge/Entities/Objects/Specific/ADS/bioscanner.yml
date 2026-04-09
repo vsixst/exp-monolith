@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseItem
+  id: InfectionScannerAsakim
+  name: blood tester
+  description: A small device. It can detect the presence of a biohazard in a patient's blood.
+  components:
+  - type: Sprite
+    sprite: Forge/Objects/Devices/bioscanner.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: Bioscanner

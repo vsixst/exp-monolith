@@ -60,3 +60,33 @@
     state: icon-on
   name: alerts-magboots-name
   description: alerts-magboots-desc
+
+- type: entity
+  parent: [ ClothingShoesBootsMagAdv, BaseFactionGearOtherFactionT2, BaseJetpack ]
+  id: ClothingShoesBootsMagAsakimForge
+  name: pre-fracture magboots
+  description: State-of-the-art magnetic boots made for combat with advanced harnesses.
+  components:
+  - type: UnremovableClothing
+  - type: Sprite
+    sprite: Forge/Clothing/Shoes/Boots/advs_magboots_promax.rsi
+    state: icon
+  - type: Clothing
+    sprite: Forge/Clothing/Shoes/Boots/advs_magboots_promax.rsi
+    stripDelay: 120
+    equipDelay: 120
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHeavySuit
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.35
+  - type: GasTank
+    outputPressure: 1
+    air:
+      volume: 1000
+      temperature: 1
+      moles:
+        - 100000 # oxygen
+        - 100000 # nitrogen
+  - type: Jetpack
+    moleUsage: 0.000002
