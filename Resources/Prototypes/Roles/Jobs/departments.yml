@@ -59,7 +59,7 @@
   name: department-Command
   description: department-NFCommand-description # Frontier
   color: "#334E6D"
-  roles:
+  roles: []
   # - Captain # Frontier
   # - ChiefEngineer # Frontier
   # - ChiefMedicalOfficer # Frontier
@@ -76,10 +76,10 @@
   # - ERTSecurity # Frontier
   # - ERTEngineer # Frontier
   # - DeathSquad # Frontier
-  - StationRepresentative # Frontier
-  - Sheriff  # Frontier
-  - StationTrafficController # Frontier
-  - TsfCommandingOfficer #Forge Change
+ # - StationRepresentative # Frontier
+ # - Sheriff  # Frontier
+ # - StationTrafficController # Frontier
+ # - TsfCommandingOfficer #Forge Change
   # - DirectorOfCare # Mono # Forge-Change-delete
   primary: false
   weight: 100
@@ -99,12 +99,14 @@
   name: department-Medical
   description: department-Medical-description
   color: "#009e79"
-  weight: 0
-  editorHidden: true #Forge Change
+  weight: 75
+  editorHidden: false #Forge Change
   roles: # Mono
   - DirectorOfCare # Mono
   - MdMedic # Mono
   - NtMedic # Forge
+  - NtMedicGunner # Forge
+  - NtMedicPilot # Forge
 
 - type: department
   id: Security
