@@ -17,6 +17,7 @@ using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared._NF.Trade;
+using Content.Shared._Mono.Company; // Forge-change
 
 namespace Content.Shared.Access.Systems;
 
@@ -116,6 +117,16 @@ public sealed class AccessReaderSystem : EntitySystem
 
         if (!reader.Enabled)
             return true;
+
+        // Forge-change-start
+        if (!string.IsNullOrEmpty(reader.RequiredCompany))
+        {
+            if (!TryComp<CompanyComponent>(user, out var userCompany) || userCompany.CompanyName != reader.RequiredCompany)
+            {
+                return false;
+            }
+        }
+        // Forge-change-end
 
         var accessSources = FindPotentialAccessItems(user);
         var access = FindAccessTags(user, accessSources);

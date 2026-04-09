@@ -60,7 +60,8 @@
   - type: FlashImmunity
   - type: EyeProtection
   - type: StaticPrice
-    price: 30
+    price: 600
+    vendPrice: 900
   - type: ShowHealthBars
   - type: NightVision
     color: "#ba8207"

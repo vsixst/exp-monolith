@@ -77,6 +77,13 @@ public sealed partial class AccessReaderComponent : Component
     /// </summary>
     [DataField]
     public bool BreakOnAccessBreaker = true;
+
+    /// <summary>
+    /// Forge-change
+    /// If specified, requires the user to belong to this company
+    /// </summary>
+    [DataField]
+    public string? RequiredCompany;
 }
 
 [DataDefinition, Serializable, NetSerializable]

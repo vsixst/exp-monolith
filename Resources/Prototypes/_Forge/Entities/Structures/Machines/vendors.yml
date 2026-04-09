@@ -21,7 +21,7 @@
       shader: unshaded
     - state: panel
       map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-  - type: CompanyAccessReader
+  - type: AccessReader
     requiredCompany: TechnicLogistic
 
 - type: entity
@@ -48,5 +48,5 @@
       shader: unshaded
     - state: panel
       map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-  - type: CompanyAccessReader
+  - type: AccessReader
     requiredCompany: Nexus
