@@ -49,3 +49,12 @@
   - Captain
   - Empire
   - EmpireOfficer
+
+- type: accessGroup
+  id: EmpireAllAccess
+  tags:
+  - Empire
+  - EmpireOfficer
+  - EmpireInqusitor
+  - EmpireCommander
+  - EmpireDiplomacy
