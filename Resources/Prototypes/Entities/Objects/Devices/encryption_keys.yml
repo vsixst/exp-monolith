@@ -55,8 +55,9 @@
   components:
   - type: EncryptionKey
     channels:
-    - CentCom
-    defaultChannel: CentCom
+    # - CentCom # Forge-change
+    - Service
+    defaultChannel: Service # Forge-change
   - type: Sprite
     layers:
     - state: crypt_blue

@@ -69,7 +69,7 @@
     channels:
     - Common
     - Command
-    - CentCom
+    # - CentCom # Forge-change
     - Engineering
     - Medical
     - Science

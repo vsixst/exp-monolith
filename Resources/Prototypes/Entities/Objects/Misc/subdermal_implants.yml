@@ -363,4 +363,5 @@
   - type: SubdermalImplant
   - type: RadioImplant
     radioChannels:
-    - CentCom
+    # - CentCom # Forge-change
+    - Service
