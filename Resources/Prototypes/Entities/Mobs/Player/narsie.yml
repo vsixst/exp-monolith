@@ -73,7 +73,6 @@
     channels:
     - Common
     - Command
-    # - CentCom # Forge-change
     - Engineering
     - Medical
     - Science
