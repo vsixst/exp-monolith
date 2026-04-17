@@ -226,7 +226,7 @@
     flashDurationMultiplier: 2
     pulseTime: 2
     isEquipment: true
-    toggleAction: PulseThermalVisio
+    toggleAction: PulseThermalVision
 
 - type: entity
   parent: [ ClothingEyesBase, ShowSecurityIcons ]
