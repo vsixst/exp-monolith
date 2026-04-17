@@ -1,3 +1,4 @@
+# region Renegate
 - type: entity
   parent: ClothingHeadHelmetMercenary
   id: ClothingHeadHelmetRenegate
@@ -18,6 +19,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.8
 
+# region Company
 - type: entity
   parent: ClothingHeadHelmetMercenary
   id: ClothingHeadHelmetNexus
@@ -37,3 +39,36 @@
         Piercing: 0.85
   - type: ExplosionResistance
     damageCoefficient: 0.8
+
+- type: entity
+  parent: [BaseFactionGearOtherFactionT0, ClothingHeadHelmetBasic]
+  id: ClothingHeadHelmetTL
+  name: Forces TechnicLogistic
+  suffix: TechnicLogistic
+  description: TechnicLogistic Self-Defense Forces helmet.
+  components:
+  - type: Sprite
+    sprite: Forge/Clothing/Head/Helmets/helmet_techniclogistic.rsi
+  - type: Clothing
+    sprite: Forge/Clothing/Head/Helmets/helmet_techniclogistic.rsi
+
+#region Other
+- type: entity
+  parent: ClothingHeadHatHardhatBase
+  id: ClothingHeadHatHardhatSEngiArmored
+  name: armored syndicate engineer hard hat
+  description: An armored hard hat. Provides the best of both worlds in both protection & utility - perfect for the engineer on the frontlines.
+  components:
+  - type: Sprite
+    sprite: Forge/Clothing/Head/Helmets/armored.rsi
+  - type: Clothing
+    sprite: Forge/Clothing/Head/Helmets/armored.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+        Cold: 0.8
+        Shock: 0.8
