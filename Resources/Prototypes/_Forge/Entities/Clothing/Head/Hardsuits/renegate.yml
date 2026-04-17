@@ -149,10 +149,6 @@
   - type: NightVision
     flashDurationMultiplier: 3.5
     isEquipment: true
-  - type: ThermalVision
-    flashDurationMultiplier: 2
-    pulseTime: 3
-    isEquipment: true
     toggleAction: PulseThermalVision
   - type: Armor
     modifiers:

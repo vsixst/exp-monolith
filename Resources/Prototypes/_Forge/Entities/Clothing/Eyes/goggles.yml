@@ -66,7 +66,7 @@
     isEquipment: true
 
 - type: entity
-  parent: [ClothingEyesNightVisionGoggles, ShowSecurityIcons, BaseC3SyndicateContraband]
+  parent: [ ClothingEyesNightVisionGoggles, ShowSecurityIcons, BaseC3SyndicateContraband ]
   id: NFClothingEyesNightVisionGoggleSyndicate
   name: night vision goggles
   description: An advanced heads-up display which provides id data and vision in complete darkness.
@@ -86,7 +86,7 @@
     isEquipment: true
 
 - type: entity
-  parent: [ClothingEyesNightVisionGoggles, ShowSecurityIcons, BaseC3PirateContraband]
+  parent: [ ClothingEyesNightVisionGoggles, ShowSecurityIcons, BaseC3PirateContraband ]
   id: NFClothingEyesNightVisionGogglePirate
   name: night vision goggles
   description: An advanced heads-up display which provides id data and vision in complete darkness.
@@ -106,7 +106,7 @@
     isEquipment: true
 
 - type: entity
-  parent: [ClothingEyesNightVisionGoggles, ShowSecurityIcons, BaseC2ContrabandUnredeemable]
+  parent: [ ClothingEyesNightVisionGoggles, ShowSecurityIcons, BaseC2ContrabandUnredeemable ]
   id: NFClothingEyesNightVisionGoggleDSBF
   name: night vision goggles
   description: Now you can see in the dark!
@@ -153,7 +153,7 @@
     isEquipment: true
 
 - type: entity
-  parent: [ClothingEyesNightVisionGoggles, ShowSecurityIcons, BaseC3SyndicateContraband]
+  parent: [ ClothingEyesNightVisionGoggles, ShowSecurityIcons, BaseC3SyndicateContraband ]
   id: NFClothingEyesNightVisionGoggleChameleonNuke
   name: night vision goggles
   description: Now you can see in the dark!
@@ -180,7 +180,7 @@
     isEquipment: true
 
 - type: entity
-  parent: [ClothingEyesNightVisionGoggles, ShowSecurityIcons, ShowMedicalIcons, BaseC3Contraband]
+  parent: [ ClothingEyesNightVisionGoggles, ShowSecurityIcons, ShowMedicalIcons, BaseC3Contraband ]
   id: ForgeClothingEyesNightVisionGoggleContractor
   name: прибор ночного видения DCN™
   description: Усовершенствованный сенсорный дисплей, который выдает идентификационные данные и обеспечивает видимость в полной темноте.
@@ -227,3 +227,17 @@
     pulseTime: 2
     isEquipment: true
     toggleAction: PulseThermalVisio
+
+- type: entity
+  parent: [ ClothingEyesBase, ShowSecurityIcons ]
+  id: ClothingEyesUIGoogles
+  name: Солнцезащитные очки U.I
+  description: Стильные фиолетовые очки с возможностью просмотра профессии и компаний
+  components:
+  - type: Sprite
+    sprite: Forge/Clothing/Eyes/Goggles/uiglasses.rsi
+  - type: Clothing
+    sprite: Forge/Clothing/Eyes/Goggles/uiglasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
