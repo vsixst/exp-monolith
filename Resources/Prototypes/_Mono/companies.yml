@@ -16,6 +16,8 @@
   description: solarfed-company-description # Forge-change
   color: "#047ABD"
   whitelisted: true
+  disabled: true
+  companyUplinkCurrency: FederationMilitaryCredit
 
 - type: company
   id: PDV
@@ -23,6 +25,8 @@
   color: "#D2B48C"
   whitelisted: true
   hidden: true # Forge-change: hide
+  disabled: true
+  companyUplinkCurrency: Doubloon
 
 - type: company
   id: MD

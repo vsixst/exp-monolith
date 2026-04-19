@@ -2472,5 +2472,72 @@ namespace Content.Client.Lobby.UI
             ImportButton.Disabled = false;
             ExportButton.Disabled = false;
         }
+
+        private void UpdateCompanyControls()
+        {
+            if (Profile is null)
+                return;
+
+            var companies = _prototypeManager.EnumeratePrototypes<CompanyPrototype>()
+                .Where(c => !c.Disabled && _companyManager.IsAllowed(c.ID))
+                .ToList();
+            companies.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.Ordinal));
+
+            // Make sure "None" is first in the list
+            var noneIndex = companies.FindIndex(c => c.ID == "None");
+            if (noneIndex != -1)
+            {
+                var none = companies[noneIndex];
+                companies.RemoveAt(noneIndex);
+                companies.Insert(0, none);
+            }
+
+            //Logger.Debug($"Updating company controls." +
+                         //$"Current profile company: {Profile.Company}\n");
+
+            // Find the company in the list and select it
+            bool found = false;
+            for (var i = 0; i < companies.Count; i++)
+            {
+                if (companies[i].ID != Profile.Company)
+                    continue; // Short circuit.
+
+                //Logger.Debug($"Found company at index {i}: {companies[i].ID} - {companies[i].Name}");
+                CompanyButton.SelectId(i);
+
+                // Description of Company (pointed-to in prototype, defined in Locale)
+                CompanyDescriptionLabel.SetMessage(!string.IsNullOrEmpty(companies[i].Description)
+                    ? Loc.GetString(companies[i].Description)
+                    : "N/A"); // Only if there's a description. If not, then set to N/A.
+
+                // Display company image if available
+                if (!string.IsNullOrEmpty(companies[i].Image))
+                {
+                    CompanyImage.Texture = IoCManager.Resolve<IResourceCache>().GetResource<TextureResource>(companies[i].Image!).Texture;
+                    CompanyImage.Visible = true;
+                }
+                else
+                {
+                    CompanyImage.Visible = false;
+                }
+
+                found = true;
+                break;
+            }
+
+            // If company wasn't found, default to "None" (index 0)
+            if (!found)
+            {
+                //Logger.Debug($"Company {Profile.Company} not found in list, defaulting to None");
+                CompanyButton.SelectId(0);
+                CompanyImage.Visible = false;
+
+                // Also reset the profile's company to None if the current one is disabled
+                if (_prototypeManager.TryIndex<CompanyPrototype>(Profile.Company, out var companyProto) && companyProto.Disabled)
+                {
+                    Profile = Profile.WithCompany("None");
+                }
+            }
+        }
     }
 }
