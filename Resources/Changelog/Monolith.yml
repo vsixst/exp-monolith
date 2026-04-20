@@ -20188,3 +20188,12 @@ Entries:
   id: 2225
   time: '2026-04-20T00:48:52.0000000+00:00'
   url: https://github.com/Monolith-Station/Monolith/pull/3816
+- author: Ilya246
+  changes:
+    - type: Fix
+      message: >-
+        Fixed projectile penetration. This means Charon can penetrate weak walls
+        now.
+  id: 2226
+  time: '2026-04-20T00:51:23.0000000+00:00'
+  url: https://github.com/Monolith-Station/Monolith/pull/3828
