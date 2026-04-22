@@ -31,6 +31,11 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
+  - type: SpaceFlightProfile
+    thrustMultiplier: 0.85
+    controlMultiplier: 1.05
+    fuelUsageMultiplier: 1.25
+    combatStabilityBonus: 0.05
 
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseC1Contraband]
@@ -102,12 +107,6 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
-  - type: PressureProtection
-    highPressureMultiplier: 0.2
-    lowPressureMultiplier: 1000
-  - type: TemperatureProtection
-    heatingCoefficient: 0.001
-    coolingCoefficient: 0.001
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMercenaryElite
@@ -141,13 +140,20 @@
         Shock: 0.6
         Caustic: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 1
-    sprintModifier: 1
-  - type: TemperatureProtection
-    heatingCoefficient: 0.001
-    coolingCoefficient: 0.001
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitMaxim
+    walkModifier: 0.9
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - this is a solution for helmet attachment/cover to not fit on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitRenegatebsii20
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
+  - type: StaticPrice
+    price: 5000
+    vendPrice: 7500
 
 - type: entity
   parent: [ ClothingOuterHardsuitBase, BaseC3SyndicateContraband, ContrabandClothing ]
@@ -186,8 +192,8 @@
         Shock: 0.3
         Caustic: 0.3
   - type: ClothingSpeedModifier
-    walkModifier: 1
-    sprintModifier: 1
+    walkModifier: 0.8
+    sprintModifier: 0.75
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieSST
@@ -227,6 +233,11 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
+  - type: SpaceFlightProfile
+    thrustMultiplier: 0.85
+    controlMultiplier: 1.05
+    fuelUsageMultiplier: 1.25
+    combatStabilityBonus: 0.05
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitContractor
@@ -261,13 +272,7 @@
         Caustic: 0.4
   - type: ClothingSpeedModifier
     walkModifier: 0.9
-    sprintModifier: 0.9
-  - type: Item
-    size: Small
-    shape:
-    - 0,0,2,3
-  - type: Storage
-    maxItemSize: Small
+    sprintModifier: 0.6
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHealmetContractorStealh
@@ -302,8 +307,8 @@
         Shock: 0.65
         Caustic: 0.75
   - type: ClothingSpeedModifier
-    walkModifier: 1
-    sprintModifier: 1
+    walkModifier: 0.7
+    sprintModifier: 0.5
   - type: HeldSpeedModifier
 
 - type: entity
