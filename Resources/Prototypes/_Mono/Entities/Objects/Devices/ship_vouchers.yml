@@ -228,6 +228,7 @@
   id: ShipVoucherMotleyAnne
   name: PDV motley anne LPC
   description: A small card that authorizes the procurement of a Motley Anne.
+  categories: [ HideSpawnMenu ] # Forge-change
   components:
   - type: Sprite
     layers:
@@ -282,7 +283,7 @@
     - Inertia
   - type: StaticPrice
     vendPrice: 30000
-    
+
 - type: entity
   parent: BaseShipLPC
   id: ShipVoucherSnakelet
