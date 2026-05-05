@@ -2,6 +2,7 @@ using Content.Server.Power.Components;
 using Content.Server.Shuttles.Components;
 using Content.Shared._Mono.Detection;
 using Content.Shared._Mono.Ships;
+using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
