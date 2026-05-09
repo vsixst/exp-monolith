@@ -67,13 +67,6 @@ public sealed partial class CCVars : CVars
         CVarDef.Create("silicon.npcupdatetime", 1.5f, CVar.SERVERONLY);
 
     /// <summary>
-    ///     Maximum decals stored in one 32×32 world chunk; oldest (lowest id) are removed when exceeded.
-    ///     Set to 0 to disable the limit.
-    /// </summary>
-    public static readonly CVarDef<int> DecalsMaxPerChunk =
-        CVarDef.Create("decals.max_per_chunk", 512, CVar.SERVERONLY);
-
-    /// <summary>
     ///     Maximum decals drawn per 1×1 tile cell on the client; extras with lower Z-index are skipped first.
     ///     Set to 0 to disable the limit.
     /// </summary>
